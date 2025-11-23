@@ -93,6 +93,6 @@ END
 // remains consistent on all systems.
 IDI_ICON1               ICON                    "icon1.ico"
 NM_ICON_IMAGE			ICON		"resources\\icon_image.ico"
-NM_BACKGROUND_IMAGE		BITMAP		"resources\\bg_image.bmp"
+//NM_BACKGROUND_IMAGE		BITMAP		"resources\\bg_image.bmp"
 
 #endif 
