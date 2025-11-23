@@ -1,0 +1,104 @@
+[09/18/23 21:27:18](WHISPER Desperate->ADMchoixau)  qua channel Ladder de
+[04/15/24 19:43:46](WHISPER GM_01->Desperate)  fb di ong
+[04/15/24 19:46:00](WHISPER GM_01->GM_02)  vào
+[04/15/24 19:46:09](WHISPER GM_01->GM_02)  make room di
+[04/15/24 20:08:36](WHISPER GM_01->GM_02)  mac do` thuong di ong
+[04/15/24 20:08:43](WHISPER GM_01->GM_02)  dung mac set GM
+[04/15/24 20:08:47](WHISPER GM_02->GM_01)  ok
+[04/15/24 20:09:18](WHISPER GM_02->GM_01)  toi dang kieu goi ae qua choi ma
+[04/15/24 20:13:09](WHISPER GM_01->GM_02)  ac
+[04/15/24 20:39:54](WHISPER GM_01->HaiCo?)  qua channel leader
+[04/15/24 20:40:05](WHISPER GM_01->HaiCo?)  qua channel ladder
+[04/15/24 20:40:16](WHISPER GM_01->HaiCo?)  thay cai channels ko
+[04/15/24 21:01:45](WHISPER GM_01->HaiCo?) 
+[04/15/24 21:02:03](WHISPER GM_01->HaiCo?)  sword thay
+[04/15/24 21:21:44](WHISPER GM_01->NuoiCunKoEm)  LA SAO BN
+[04/15/24 21:22:00](WHISPER GM_01->NuoiCunKoEm)  DE V THOI
+[04/15/24 21:22:05](WHISPER GM_01->NuoiCunKoEm)  AP DUNG KHO
+[04/15/24 21:22:11](WHISPER GM_01->NuoiCunKoEm)  DE XIU FIX LAI
+[04/15/24 21:31:31](WHISPER GM_01->HaiCo?)  nay ong nao bao
+[04/15/24 21:31:37](WHISPER GM_01->HaiCo?)  lam CTV v
+[04/15/24 21:31:59](WHISPER GM_01->HaiCo?)  ban ong bao
+[04/15/24 21:34:02](WHISPER GM_01->NuoiCunKoAnh)  là sao
+[04/15/24 21:34:07](WHISPER GM_01->NuoiCunKoAnh)  codetest
+[04/15/24 21:34:10](WHISPER GM_01->NuoiCunKoAnh)  nhap chua
+[04/15/24 21:35:12](WHISPER GM_01->NuoiCunKoAnh)  v là cs r á
+[04/16/24 11:40:38](WHISPER GM_01->NuoiCunKoAnh)  doi xiu
+[04/16/24 11:51:33](WHISPER GM_01->GoiAnhLaSea)  oi
+[04/16/24 11:58:35](GIVE_JJANG) GM_01 gave jjang to GoiAnhLaSea
+[04/16/24 12:03:13](REMOVE_JJANG) ^1Agenal removed GoiAnhLaSea's Jjang
+[04/16/24 16:23:54](WHISPER GM_02->1minh1server)  uh
+[04/16/24 16:25:28](WHISPER GM_02->1minh1server)  muon ac no choi
+[04/16/24 17:16:10](WHISPER GM_02->Jinx)  OIO
+[04/16/24 17:16:18](WHISPER GM_02->Jinx)  CODETEST
+[04/16/24 17:16:43](WHISPER GM_02->Jinx)  CODETEST
+[04/16/24 17:16:45](WHISPER GM_02->Jinx)  CODETEST
+[04/16/24 17:16:57](WHISPER GM_02->Jinx)  NHAP CODE DANG NHAP VO WEB GUNZ ROI NHAP CODETEST
+[04/16/24 17:18:03](WHISPER GM_02->Jinx)  NHAP CODE DANG NHAP VO WEB GUNZ ROI NHAP CODETEST
+[04/16/24 17:18:13](WHISPER GM_02->Jinx)  codetest
+[04/16/24 17:23:21](WHISPER GM_02->1minh1server)  tao lai di
+[04/16/24 17:28:42](WHISPER GM_02->1minh1server)  ai
+[04/16/24 18:03:18](WHISPER GM_02->1minh1server)  duel em oi
+[04/16/24 18:08:34](WHISPER GM_02->1minh1server)  ha
+[04/16/24 18:32:28](WHISPER GM_02->1minh1server)  bon nay` ai biet dc
+[04/16/24 18:32:32](WHISPER GM_02->1minh1server)  biet sao ko
+[04/16/24 18:32:40](WHISPER GM_02->1minh1server)  gunz nay speed nhanh can = game thu?
+[04/16/24 18:32:54](WHISPER GM_02->1minh1server)  chu nhu gunz kia thi bon pro no nhanh hon
+[04/16/24 18:34:16](WHISPER GM_02->1minh1server)  chu nhu gunz kia thi bon pro no nhanh hon
+[04/16/24 18:34:24](WHISPER GM_02->1minh1server)  bon nay` so.
+[04/16/24 18:34:29](WHISPER GM_02->1minh1server)  bon nay` so. ai cung speed nhu no
+[04/16/24 18:40:40](WHISPER GM_02->1minh1server)  bon nay` nham~ vcl em dung nc nua
+[04/16/24 18:41:10](WHISPER GM_02->1minh1server)  dm ben m2g co thang no speed y chang ben nay`
+[04/16/24 18:41:36](WHISPER GM_02->xiaolin?)  option ,extra part1 dong dau tien chon full
+[04/16/24 18:41:55](WHISPER GM_02->xiaolin?)  option ,extra part1 dong dau tien chon full
+[04/16/24 19:38:08](WHISPER GM_02->Desperate)  bye
+[04/16/24 20:29:25](WHISPER MOD_01->Desperate)  254
+[04/16/24 20:29:35](WHISPER MOD_01->Desperate)  là gì v Tram
+[04/16/24 20:33:20](WHISPER ^1Agenal->Desperate)  tui thuan day ko cs ai lÃ m
+[04/16/24 20:33:27](WHISPER ^1Agenal->Desperate)  GM hay gi nua dau
+[04/16/24 20:33:45](WHISPER Desperate->^1Agenal)  ko co ai thi thoi
+[04/16/24 20:33:51](WHISPER ^1Agenal->Desperate)  :))) hoang ak
+[04/16/24 20:35:17](WHISPER ^1Agenal->Desperate)  lam gi giam make linh tinh dau :)))
+[04/16/24 20:35:29](WHISPER ^1Agenal->Desperate)  sang nay vo
+[04/16/24 20:35:32](WHISPER ^1Agenal->Desperate)  keu goi duoc it r
+[04/16/24 20:39:27](WHISPER 1minh1server->Desperate)  doi ten dc ko tram nhi
+[04/16/24 20:39:50](WHISPER Desperate->1minh1server)  doi dc
+[04/16/24 20:39:53](WHISPER 1minh1server->Desperate)  doi o dau a'
+[04/16/24 20:39:54](WHISPER Desperate->1minh1server)  ra web doi dc ma
+[04/16/24 20:39:58](WHISPER 1minh1server->Desperate)  ok tram
+[04/16/24 20:45:31](WHISPER 1minh1server->Desperate) 
+[04/16/24 20:45:49](WHISPER 1minh1server->Desperate)  TRAM OI
+[04/16/24 20:46:11](WHISPER Desperate->1minh1server)  oi
+[04/16/24 20:46:15](WHISPER 1minh1server->Desperate)  NICK NAY CO TO CHUC DC EVENT K
+[04/16/24 20:46:33](WHISPER Desperate->1minh1server)  doi ten nghe do tre con di
+[04/16/24 20:46:37](WHISPER 1minh1server->Desperate)  =)))
+[04/16/24 20:46:38](WHISPER Desperate->1minh1server)  to chuc gi cha dc
+[04/16/24 20:46:41](WHISPER 1minh1server->Desperate)  DE RA DOI TEN
+[04/16/24 20:47:03](WHISPER 1minh1server->Desperate)  tram cho m cac' ma~ lenh. di
+[04/16/24 20:47:13](WHISPER Desperate->1minh1server)  lenh gi
+[04/16/24 20:47:22](WHISPER 1minh1server->Desperate)   admin thi co lenh. gi`
+[04/16/24 20:47:23](WHISPER Desperate->1minh1server)  /sta
+[04/16/24 21:48:54](WHISPER MR-T->1909)  ban cho ong kia thua ong
+[04/16/24 22:00:24](WHISPER MR-T->Desperate)  TRAM
+[04/16/24 22:00:38](WHISPER Desperate->MR-T)  oi
+[04/17/24 15:22:54](WHISPER GM_02->CTV_01)  duel
+[09/09/24 19:17:00](WHISPER Administrator->GX_KeSan[GM])  ra
+[09/09/24 19:17:04](WHISPER Administrator->pe_heo)  ra
+[09/09/24 19:24:13](WHISPER Administrator->pe_heo)  vo di
+[09/09/24 19:24:24](WHISPER Administrator->pe_heo)  zo di
+[09/10/24 16:43:43](WHISPER Administrator->Desperate)  chinh cay sung rocket admin 9999 lam event ne' dan choi tram
+[09/10/24 16:44:42](WHISPER Administrator->Desperate)  chu gunz nay cua tram lam ra ma dung ko
+[09/10/24 19:04:03](WHISPER Administrator->ThachDz) 
+[09/11/24 18:34:11](WHISPER Administrator->5Cam)  ra day
+[09/11/24 21:46:38](WHISPER ThachDz->[D]usting)  alo
+[09/11/24 21:46:56](WHISPER ThachDz->[D]usting)  out ra di
+[09/11/24 21:47:44](WHISPER ThachDz->[D]usting)  qua day
+[12/19/24 20:46:26](WHISPER Administrator->ChiBa)  RA WEB NHAP CODETEST LA CO CASH MUA DO
+[04/15/25 19:49:11](WHISPER Administrator->fantasy)  zo
+[04/15/25 19:51:32](WHISPER Administrator->fantasy)  zo
+[04/15/25 20:20:57](WHISPER Administrator->Learner)  dau roi
+[04/15/25 20:21:00](WHISPER Administrator->Learner)  qua room nay`
+[04/15/25 20:21:11](WHISPER Administrator->Learner)  qua day em
+[04/15/25 20:34:10](WHISPER Administrator->Learner)  room training ne
+[05/02/25 07:42:54](WHISPER Administrator->Leo1456)  alo
+[05/02/25 08:24:55](WHISPER Administrator->guccigang)  alo

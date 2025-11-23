@@ -1,0 +1,135 @@
+CPU ID = Intel(R) Core(TM) i5-14400F @ 2496 MHz
+Display Device = NVIDIA GeForce RTX 3060 Ti 
+Display Driver Version = 32.0.0015.7652
+Windows = Windows 11 (64-bit) Build 26200 (32603 MB)
+ ===============System Information===============
+
+Load XML from memory : system/locale.xml- SUCCESS
+Country : (USA), Language : (USA)
+Load Config from file : config.xml- SUCCESS
+Load XML from memory : system/system.xml- SUCCESS
+Load XML from memory : system/strings.xml(0x0009) - SUCCESS
+Load XML from memory : system/cserror.xml(0x0009) - SUCCESS
+Load XML from memory : system/messages.xml(0x0009) - SUCCESS
+Load XML from memory : system/gametypecfg.xml 
+ =================Load XML Files=================
+
+InitializeNotify ok.
+Adapter 0: NVIDIA GeForce RTX 3060 Ti (Vendor 0x10DE, Device 0x2489)
+Selected discrete GPU: NVIDIA GeForce RTX 3060 Ti (Vendor 0x10DE)
+WFog Enabled Device.
+device created.
+Video memory 2046.500000 
+shader initialize successful (initial): 1
+Reset Device 
+Video memory 2046.500000 
+shader reinitialized after device reset: 1
+main : RGetLenzFlare()->Initialize() 
+InitialLoading success.
+interface Initialize success
+Discord: InitialLoading success.
+ZApplication::OnCreate : begin
+0(Primary Sound Driver): Hardware Mixing Not Supported
+1(Speakers (USB Audio Device)): Hardware Mixing Not Supported
+2(Realtek Digital Output (Realtek(R) Audio)): Hardware Mixing Not Supported
+3(SONY TV (NVIDIA High Definition Audio)): Hardware Mixing Not Supported
+[[[getMaxChannel32]]]]
+
+-------------------> Sound Engine Create : 0.795000 
+
+sound engine create.
+Error: Failed to load tips from selected language. Defaulting to English.
+Load XML from memory : system/tips.xml(0x0009)
+- SUCCESS
+start log bipmap
+end of load bitmaps2
+loading pictures : 5.356000 
+IDLResource Loading Success!!
+IDL resources : 0.096000 
+start InitInterface option
+Number of Display mode : 47
+Number of Display mode : 0
+end of InitInterface option ok
+Init maps : no Current ChannelRule 
+Screen Effect Manager Create : 0.106000 
+Screen effect manager create success.
+Effect manager create success.
+Client create success.
+game interface create success.
+
+-------------------> GameInterface Create : 5.681000 
+
+Load character.xml success,
+
+-------------------> Character Loading : 1.301000 
+
+
+-------------------> WeaponMesh Loading : 0.766000 
+
+Load weapon.xml success. 
+
+-------------------> Worlditem Loading : 0.042000 
+
+Load system items info success.
+Load zBuff info success.
+Init world item manager success.
+Init map Descriptor success.
+Init channel rule manager success.
+Init abuse manager success.
+Init chatting filter. success
+Init skillmap manager success.
+Init magicmap manager success.
+Init paintmap manager success.
+BspObject open : begin interface/login/login.rs 
+RBspObject::Open : Open_MaterialList
+RBspObject::Open : Open_LightList
+BspObject open object list : begin
+RBspObject::Open_ObjectList : size 11 
+RBspObject::Open_ObjectList : end
+RBspObject::Open : OpenDescription
+RBspObject::OpenRs : file.Open 
+RBspObject::OpenRs : file.Read(&header) 
+RBspObject::OpenRs : file.Read(&nMaterial) 
+RBspObject::OpenRs : Open_Nodes begin 
+RBspObject::OpenRs : Open_Nodes end 
+RBspObject::Open : OpenRs 
+RBspObject::Open : OpenBsp 
+BspObject load lightmap : file.Read(&header)
+BspObject load lightmap nCount = 1
+BspObject load lightmap 0
+BspObject load lightmap : file.Read(&m_nLightmap) done
+BspObject load lightmap : end 
+RBspObject::Open : done
+Load smoke description mesh.
+main : OnCreate() done
+MExitListener !
+Destroy gunz
+Destroy sound engine.
+Destroy sound engine. success
+Destroy console.
+Destroy interface begin 
+destroy client.
+PeerInfoList Released
+clear looks end.
+Widget map clear end.
+desctroy cursor system end.
+clear IDL resource end.
+Final interface end.
+Destroy game interface done.
+clear looks end.
+Widget map clear end.
+desctroy cursor system end.
+Destroy mesh manager.
+Destroy weapon mesh manager.
+Clear SkillManager.
+Clear QuestItemDescMgr.
+Clear MatchItemDescMgr.
+Clear ChattingFilter.
+Clear ChannelRuleMgr.
+destroy game application done.
+interface finalize.
+game input destroy.
+game configuration destroy.
+Bitmap manager destroy Animation bitmap.
+destroy gunz finish.
+Rframe_destory::closeDisplay

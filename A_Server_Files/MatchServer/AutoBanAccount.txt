@@ -1,0 +1,47 @@
+[X-Trap Auto Banned] : AID(2023) Reason(KeyHack) Char(testgame1123) [ 20/09/2023 / 17:22 PM]
+[X-Trap Auto Banned] : AID(2073) Reason(Programs) Char(BabyNo1) [ 18/10/2023 / 13:03 PM] - User automatically banned.
+[X-Trap Auto Banned] : AID(2198) Reason(Programs) Char(Kingofmap) [ 08/11/2023 / 23:50 PM] - User automatically banned.
+[X-Trap Auto Banned] : AID(2213) Reason(KeyHack) Char(duy23121) [ 10/11/2023 / 21:50 PM]
+[X-Trap Auto Banned] : AID(2469) Reason(Programs) Char(QuangTruong) [ 03/12/2023 / 03:32 AM] - User automatically banned.
+[X-Trap Auto Banned] : AID(2478) Reason(Programs) Char(T_T___T_T) [ 05/12/2023 / 03:52 AM] - User automatically banned.
+[X-Trap Auto Banned] : AID(2476) Reason(Programs) Char(Thanh703) [ 05/12/2023 / 12:52 PM] - User automatically banned.
+[X-Trap Auto Banned] : AID(2638) Reason(KeyHack) Char(TuBuDu) [ 23/12/2023 / 17:40 PM]
+[X-Trap Auto Banned] : AID(2873) Reason(Programs) Char(QN_DATMO) [ 10/01/2024 / 12:12 PM] - User automatically banned.
+[X-Trap Auto Banned] : AID(3119) Reason(KeyHack) Char(baonhi) [ 02/02/2024 / 21:19 PM]
+[X-Trap Auto Banned] : AID(3190) Reason(KeyHack) Char(MC_Lemon) [ 08/02/2024 / 13:59 PM]
+[X-Trap Auto Banned] : AID(3190) Reason(KeyHack) Char(MC_Lemon) [ 08/02/2024 / 14:19 PM]
+[X-Trap Auto Banned] : AID(3190) Reason(KeyHack) Char(MC_Lemon) [ 08/02/2024 / 14:19 PM]
+[X-Trap Auto Banned] : AID(3190) Reason(KeyHack) Char(MC_Lemon) [ 08/02/2024 / 14:39 PM]
+[X-Trap Auto Banned] : AID(3245) Reason(KeyHack) Char(XXSXX) [ 13/02/2024 / 06:19 AM]
+[X-Trap Auto Banned] : AID(3421) Reason(KeyHack) Char(asdsadasdsa) [ 01/03/2024 / 15:40 PM]
+[X-Trap Auto Banned] : AID(60) Reason(Programs) Char(boybungbu) [ 18/03/2024 / 11:16 AM] - User automatically banned.
+[X-Trap Auto Banned] : AID(75) Reason(KeyHack) Char(JaneFoster) [ 21/03/2024 / 00:39 AM]
+[X-Trap Auto Banned] : AID(284) Reason(KeyHack) Char(Chocopie) [ 16/04/2024 / 19:39 PM]
+[X-Trap Auto Banned] : AID(253) Reason(Programs) Char(^1Agenal) [ 16/04/2024 / 20:39 PM] - User automatically banned.
+[X-Trap Auto Banned] : AID(306) Reason(Programs) Char(ToNy) [ 18/04/2024 / 20:59 PM] - User automatically banned.
+[X-Trap Auto Banned] : AID(208) Reason(KeyHack) Char(chau1) [ 22/04/2024 / 19:40 PM]
+[X-Trap Auto Banned] : AID(480) Reason(Programs) Char(haupeoFIFA) [ 05/05/2024 / 13:35 PM] - User automatically banned.
+[X-Trap Auto Banned] : AID(481) Reason(Programs) Char(phongbui) [ 05/05/2024 / 14:55 PM] - User automatically banned.
+[X-Trap Auto Banned] : AID(618) Reason(Programs) Char(AD_MIN) [ 24/05/2024 / 06:36 AM] - User automatically banned.
+[X-Trap Auto Banned] : AID(686) Reason(KeyHack) Char(SkillBo0m) [ 01/06/2024 / 23:45 PM]
+[X-Trap Auto Banned] : AID(686) Reason(KeyHack) Char(SkillBo0m) [ 02/06/2024 / 00:45 AM]
+[X-Trap Auto Banned] : AID(801) Reason(KeyHack) Char(Tsunade) [ 19/06/2024 / 23:45 PM]
+[X-Trap Auto Banned] : AID(281) Reason(KeyHack) Char(TuoiConNgan) [ 26/06/2024 / 16:45 PM]
+[X-Trap Auto Banned] : AID(923) Reason(KeyHack) Char(huyen) [ 03/07/2024 / 12:05 PM]
+[X-Trap Auto Banned] : AID(1030) Reason(Programs) Char(JasonPacheco) [ 16/07/2024 / 12:25 PM] - User automatically banned.
+[X-Trap Auto Banned] : AID(96) Reason(KeyHack) Char(pe_heo) [ 09/09/2024 / 18:48 PM]
+[X-Trap Auto Banned] : AID(276) Reason(KeyHack) Char(testgame) [ 01/10/2024 / 00:22 AM]
+[X-Trap Auto Banned] : AID(429) Reason(Programs) Char(Baro) [ 15/10/2024 / 12:02 PM] - User automatically banned.
+[X-Trap Auto Banned] : AID(498) Reason(KeyHack) Char(OHOGTH) [ 18/10/2024 / 23:02 PM]
+[X-Trap Auto Banned] : AID(933) Reason(Programs) Char(Musppp) [ 16/12/2024 / 23:21 PM] - User automatically banned.
+[X-Trap Auto Banned] : AID(1414) Reason(Programs) Char(emanhleo) [ 01/03/2025 / 21:06 PM] - User automatically banned.
+[X-Trap Auto Banned] : AID(1521) Reason(KeyHack) Char(VNABC) [ 17/03/2025 / 20:26 PM]
+[X-Trap Auto Banned] : AID(1521) Reason(KeyHack) Char(VNABC) [ 17/03/2025 / 20:26 PM]
+[X-Trap Auto Banned] : AID(1611) Reason(KeyHack) Char(Zipo) [ 30/03/2025 / 15:46 PM]
+[X-Trap Auto Banned] : AID(1611) Reason(KeyHack) Char(Zipo) [ 30/03/2025 / 15:46 PM]
+[X-Trap Auto Banned] : AID(1727) Reason(Underclock) Char(igneel) [ 12/04/2025 / 19:26 PM] - User automatically banned.
+[X-Trap Auto Banned] : AID(1767) Reason(KeyHack) Char(SatMau) [ 22/04/2025 / 15:06 PM]
+[X-Trap Auto Banned] : AID(1910) Reason(KeyHack) Char(taxigrab) [ 02/05/2025 / 11:27 AM]
+[X-Trap Auto Banned] : AID(1787) Reason(KeyHack) Char(AnvoArc) [ 03/05/2025 / 10:07 AM]
+[X-Trap Auto Banned] : AID(1934) Reason(KeyHack) Char(BuNnYjUmB) [ 03/05/2025 / 23:47 PM]
+[X-Trap Auto Banned] : AID(1979) Reason(KeyHack) Char(222244444) [ 07/05/2025 / 16:51 PM]

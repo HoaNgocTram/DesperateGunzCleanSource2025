@@ -1,0 +1,276 @@
+* {
+    padding: 0;
+    margin: 0;
+    list-style-type: none;
+    text-decoration: none;
+    font-size: 12px;
+    font-family: 'Open Sans', 'Gill Sans', 'Gill Sans MT', 'Trebuchet MS', sans-serif;
+}
+
+html {
+    overflow: hidden;
+}
+
+body {
+    background: #1a1717;
+}
+
+.body {
+    width: 710px;
+    height: 434px;
+    margin: 0 auto;
+    background: url('images/cover16.jpg');
+}
+
+.wrapper {
+    width: 710px;
+}
+
+.nav {
+    width: 100px;
+    float: left;
+}
+
+.nav li {
+    width: 100px;
+    height: 30px;
+    color: #58595a;
+    margin-top: 5px;
+    cursor: pointer;
+    text-transform: uppercase;
+    text-indent: 14px;
+    font-size: 11px;
+    line-height: 32px;
+    font-weight: 700;
+}
+
+.nav li:first-child {
+    margin-top: 15px;
+}
+
+.nav li.active {
+    background: url('images/highlighted.png') no-repeat;
+    color: #fff;
+    font-weight: 800;
+}
+
+.section {
+    float: left;
+    width: 610px;
+    height: 434px;
+}
+
+.section li.active {
+    color: #fff;
+}
+
+.discord span, .event span, .players span {
+    font-size: 11px;
+    text-transform: uppercase;
+    font-weight: 700;
+}
+
+.event {
+    margin: 70px 0px 12px 16px;
+}
+
+.discord, .players {
+    margin: 12px 0px 12px 16px;
+}
+
+.players span:first-child {
+    color: #fff;
+}
+
+.players span:last-child {
+    color: #00bd31;
+}
+
+.event span:first-child {
+    color: #fff;
+}
+
+.event span:last-child {
+    color: #d42222;
+}
+
+.event.hasevent span:first-child {
+    color: #00bd31;
+}
+
+.event.hasevent span:last-child {
+    color: #00bd31;
+}
+
+.discord span:first-child {
+    color: #fff;
+}
+
+.header {
+    height: 70px;
+}
+
+.header .title {
+    width: 300px;
+    float: left;
+}
+
+.header .title h1, .header .title h2 {
+    margin-left: 15px;
+}
+
+.header .title h1 {
+    color: #f6fdff;
+    text-transform: uppercase;
+    font-size: 16px;
+    font-weight: 700;
+    margin-top: 8px;
+}
+
+.header .title h2 {
+    color: #adadad;
+    font-size: 10px;
+    text-transform: uppercase;
+    font-weight: 300;
+}
+
+.header .title h2 span {
+    color: #2899ff;
+    font-weight: 700;
+    font-size: 12px;
+}
+
+.header div:last-child {
+    width: 300px;
+    float: left;
+    position: relative;
+}
+
+.header div:last-child span {
+    font-size: 11px;
+    text-transform: uppercase;
+    color: #5a5a5a;
+    font-weight: 700;
+}
+
+.header div:last-child span span {
+    color: #b02a2a;
+    display: inline-block;
+}
+
+.price {
+    margin-top: 23px;
+    margin-left: 5px;
+    display: block;
+    width: 85px;
+    float: left;
+}
+
+.strike {
+    position: relative;
+    color: #5a5a5a !important;
+}
+
+.strike::before {
+    position: absolute;
+    content: '';
+    left: 0;
+    top: 50%;
+    right: 0;
+    border: 1px solid red;
+    -webkit-transform: rotate(-5deg);
+    -moz-transform: rotate(-5deg);
+    -ms-transform: rotate(-5deg);
+    -o-transform: rotate(-5deg);
+    transform: rotate(-5deg);
+}
+
+.name {
+    display: none;
+    position: absolute;
+    top: 4px;
+    left: -1px;
+    text-align: center;
+    color: #fff !important;
+    background: rgba(0,0,0,0.4);
+    border-radius: 0px 10px 10px 10px;
+    width: 210px;
+    height: 49px;
+    line-height: 52px;
+    font-size: 10px !important;
+    z-index: 999;
+}
+
+.name:hover, .price:hover + .name, .img:hover + .name {
+    display: block;
+}
+
+.img {
+    display: block;
+    float: left;
+    margin: 10px 0 0 10px;
+    text-align: center;
+    width: 110px;
+}
+
+.img img {
+    max-height: 40px;
+    max-width: 100px;
+}
+
+.header a {
+    background: #292929;
+    border-radius: 15px;
+    border: none;
+    color: #fff;
+    padding: 5px 15px;
+    font-size: 9px;
+    text-transform: uppercase;
+    margin-top: 19px;
+    margin-left: 5px;
+    display: inline-block;
+}
+
+.title {
+    display: none;
+}
+
+.title.title1 {
+    display: block;
+}
+
+.content {
+    display: none;
+}
+
+.content.news1 {
+    display: block;
+}
+
+.content p {
+    color: #cccccc;
+    font-size: 12px;
+    margin: 26px 0 0 15px;
+    line-height: 18px;
+    width: 585px;
+    max-height: 325px;
+    overflow: hidden;
+}
+
+.content a {
+    color: #2899ff;
+    font-size: 12px;
+}
+
+a:link,
+a:visited,
+a:hover,
+a:active {
+    color: #2899ff;
+    font-weight: 700;
+}
+
+a.c5 {
+    color: #fff;
+    font-weight: 700;
+}

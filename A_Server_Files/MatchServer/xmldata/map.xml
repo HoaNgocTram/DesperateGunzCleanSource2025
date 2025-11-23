@@ -1,0 +1,264 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<!-- Last Change: change formar image bmp to jpg-->
+<XML>
+<MAP id="0" MapName ="Mansion" 
+	MapImageName="Mansion.bmp" 
+	BannerName="banner_Mansion.tga" 
+	ExpRatio="1" MaxPlayers="32" 
+	bOnlyDuelMap="false" 
+	bIsCTFMap="false">	
+</MAP>
+<MAP id="1" MapName ="Prison" 
+	MapImageName="Prison.bmp" 
+	BannerName="banner_Prison.tga" 
+	ExpRatio="1" MaxPlayers="32" 
+	bOnlyDuelMap="false" 
+	bIsCTFMap="true">
+</MAP>
+<MAP id="2" MapName ="Station" 
+	MapImageName="Station.bmp" 
+	BannerName="banner_Station.tga" 
+	ExpRatio="1" MaxPlayers="32" 
+	bOnlyDuelMap="false" 
+	bIsCTFMap="true">
+</MAP>
+<MAP id="3" MapName ="Prison II" 
+	MapImageName="Prison II.bmp" 
+	BannerName="banner_Prison II.tga" 
+	ExpRatio="1" MaxPlayers="32"
+	bOnlyDuelMap="false" 
+	bIsCTFMap="true">
+</MAP>
+<MAP id="4" MapName ="Battle Arena" 
+	MapImageName="Arena.bmp" 
+	BannerName="banner_Battle Arena.tga" 
+	ExpRatio="1" MaxPlayers="32" 
+	bOnlyDuelMap="false" 
+	bIsCTFMap="true">
+</MAP>
+<MAP id="5" MapName ="Town" 
+	MapImageName="Town.bmp" 
+	BannerName="banner_Town.tga"
+	ExpRatio="1" MaxPlayers="32" 
+	bOnlyDuelMap="false" 
+	bIsCTFMap="true">		
+</MAP>
+<MAP id="6" MapName ="Dungeon" 
+	MapImageName="Dungeon.bmp" 
+	BannerName="banner_Dungeon.tga" 
+	ExpRatio="1" MaxPlayers="32" 
+	bOnlyDuelMap="false" 
+	bIsCTFMap="false">
+</MAP>
+<MAP id="7" MapName ="Dungeon II" 
+	MapImageName="Dungeon.bmp" 
+	BannerName="banner_Dungeon.tga" 
+	ExpRatio="1" MaxPlayers="32" 
+	bOnlyDuelMap="false" 
+	bIsCTFMap="false">
+</MAP>
+<MAP id="8" MapName ="Ruin" 
+	MapImageName="Ruin.bmp" 
+	BannerName="banner_Ruin.tga" 
+	ExpRatio="1" MaxPlayers="32" 
+	bOnlyDuelMap="false" 
+	bIsCTFMap="true">
+</MAP>
+<MAP id="9" MapName ="Island"
+	MapImageName="Island.bmp" 
+	BannerName="banner_island.tga" 
+	ExpRatio="1" MaxPlayers="32" 
+	bOnlyDuelMap="false" 
+	bIsCTFMap="true">
+</MAP>
+<MAP id="10" MapName ="Garden" 
+	MapImageName="Garden.bmp" 
+	BannerName="banner_Garden.tga" 
+	ExpRatio="1" MaxPlayers="32" 
+	bOnlyDuelMap="false" 
+	bIsCTFMap="true">
+</MAP>
+<MAP id="11" MapName ="Castle" 
+	MapImageName="Castle.bmp" 
+	BannerName="banner_Castle.tga" 
+	ExpRatio="1" MaxPlayers="32" 
+	bOnlyDuelMap="false" 
+	bIsCTFMap="true">
+</MAP>
+<MAP id="12" MapName ="Factory" 
+	MapImageName="Factory.bmp" 
+	BannerName="banner_Factory.tga" 
+	ExpRatio="1" MaxPlayers="32" 
+	bOnlyDuelMap="false" 
+	bIsCTFMap="true">
+</MAP>
+<MAP id="13" MapName ="Port" 
+	MapImageName="Port.bmp" 
+	BannerName="banner_port.tga" 
+	ExpRatio="1" MaxPlayers="32" 
+	bOnlyDuelMap="false" 
+	bIsCTFMap="true">
+</MAP>
+<MAP id="14" MapName ="Lost Shrine" 
+	MapImageName="Lost Shrine.bmp" 
+	BannerName="banner_Lost Shrine.tga" 
+	ExpRatio="1" MaxPlayers="32" 
+	bOnlyDuelMap="false" 
+	bIsCTFMap="true">
+</MAP>
+<MAP id="15" MapName ="Stairway" 
+	MapImageName="Stairway.bmp" 
+	BannerName="banner_Stairway.tga" 
+	ExpRatio="1" MaxPlayers="32" 
+	bOnlyDuelMap="false" 
+	bIsCTFMap="true">
+</MAP>
+<MAP id="16" MapName ="Snow_Town" 
+	MapImageName="Snow_Town.bmp" 
+    BannerName="banner_Snow_Town.tga" 
+    ExpRatio="1" MaxPlayers="32" 
+    bOnlyDuelMap="false" 
+    bIsCTFMap="true">
+</MAP>
+<MAP id="17" MapName ="Hall" 
+   MapImageName="Mansion.bmp" 
+   BannerName = "banner_Mansion.tga" 
+   ExpRatio="1" MaxPlayers="32" 
+   bOnlyDuelMap="true" 
+   bIsCTFMap="false">
+</MAP>
+<MAP id="18" MapName ="Catacomb" 
+   MapImageName="Dungeon.bmp" 
+   BannerName = "banner_Dungeon.tga" 
+   ExpRatio="1" MaxPlayers="32" 
+   bOnlyDuelMap="true" 
+   bIsCTFMap="false"> 
+</MAP>
+<MAP id="19" MapName ="Jail" 
+	MapImageName="Prison.bmp" 
+    BannerName = "banner_Prison.tga" 
+    ExpRatio="1" MaxPlayers="32" 
+    bOnlyDuelMap="true" 
+    bIsCTFMap="false">
+</MAP>
+<MAP id="20" MapName ="Shower Room" 
+	MapImageName="Prison.bmp" 
+    BannerName = "banner_Prison II.tga" 
+    ExpRatio="1" MaxPlayers="32" 
+    bOnlyDuelMap="true" 
+    bIsCTFMap="false">
+</MAP>
+<MAP id="21" MapName ="High_Haven" 
+	MapImageName="High_Haven.bmp" 
+	BannerName="banner_High_Haven.tga" 
+	ExpRatio="1" MaxPlayers="32" 
+	bOnlyDuelMap="false" 
+	bIsCTFMap="true">
+</MAP>
+<MAP id="22" MapName ="Citadel" 
+	MapImageName="Citadel.bmp" 
+    BannerName="banner_Citadel.tga" 
+    ExpRatio="1" MaxPlayers="32" 
+    bOnlyDuelMap="false" 
+    bIsCTFMap="true">
+</MAP>
+<MAP id="23" MapName ="RelayMap" 
+	MapImageName="RelayMap" 
+    BannerName="banner_RelayMap.tga" 
+    ExpRatio="1" MaxPlayers="32" 
+    bOnlyDuelMap="false" 
+    bIsCTFMap="true">
+</MAP>
+<MAP id="24" MapName ="Halloween Town" 
+	MapImageName="halloween town.bmp" 
+    BannerName="banner_Halloween Town.tga" 
+    ExpRatio="1" MaxPlayers="32" 
+    bOnlyDuelMap="false" 
+    bIsCTFMap="true">
+</MAP>
+<MAP id="25" MapName ="WeaponShop" 
+	MapImageName="WeaponShop.bmp" 
+    BannerName="banner_WeaponShop.tga" 
+    ExpRatio="1" MaxPlayers="32" 
+    bOnlyDuelMap="false" 
+    bIsCTFMap="true">
+</MAP>
+<MAP id="26" MapName ="BlitzKrieg" 
+	MapImageName="map_newmap.bmp" 
+	BannerName="banner_krieg.tga" 
+	ExpRatio="1" MaxPlayers="32" 
+	bOnlyDuelMap="false" 
+	bIsCTFMap="false">
+</MAP>
+<MAP id="27" MapName ="SkirmishHall" 
+	MapImageName="SkirmishHall.bmp" 
+	BannerName="banner_SkirmishHall.tga" 
+	ExpRatio="1" MaxPlayers="8" 
+	bOnlyDuelMap="false" 
+	bIsCTFMap="false">
+</MAP>
+
+<!-- ChallengueQuest Maps -->
+<MAP id="32" MapName ="[Lv. 1] Rebel Arsenal"    
+	MapImageName="challengequest_guerilla.bmp" 
+	BannerName = "banner_guerr.tga" 
+	ExpRatio ="1.0" MaxPlayers ="4" 
+	bOnlyDuelMap = "false">
+</MAP>
+
+<MAP id="33" MapName ="[Lv.21] Rebel Secret Base" 
+	MapImageName="challengequest_guerilla.bmp" 
+	BannerName = "banner_guerr.tga" 
+	ExpRatio ="1.0" MaxPlayers ="4" 
+	bOnlyDuelMap = "false">
+</MAP>
+
+<MAP id="34" MapName ="[Lv.41] Rebel Command post" 
+	MapImageName="challengequest_guerilla.bmp" 
+	BannerName = "banner_guerr.tga" 
+	ExpRatio ="1.0" MaxPlayers ="4" 
+	bOnlyDuelMap = "false">
+</MAP>
+
+<MAP id="35" MapName ="[Lv.61] Suppress the Rebellion" 
+	MapImageName="challengequest_guerilla.bmp" 
+	BannerName = "banner_guerr.tga" 
+	ExpRatio ="1.0" MaxPlayers ="4" 
+	bOnlyDuelMap = "false">
+</MAP>
+
+<MAP id="36" MapName ="[Lv.11] Test Room C" 
+	MapImageName="challengequest_research.bmp" 
+	BannerName = "banner_robot.tga" 
+	ExpRatio ="1.0" MaxPlayers ="3" 
+	bOnlyDuelMap = "false">
+</MAP>
+
+<MAP id="37" MapName ="[Lv.31] Test Room B" 
+	MapImageName="challengequest_research.bmp" 
+	BannerName = "banner_robot.tga" 
+	ExpRatio ="1.0" MaxPlayers ="3" 
+	bOnlyDuelMap = "false">
+</MAP>
+
+<MAP id="38" MapName ="[Lv.51] Test Room A" 
+	MapImageName="challengequest_research.bmp" 
+	BannerName = "banner_robot.tga" 
+	ExpRatio ="1.0" MaxPlayers ="3" 
+	bOnlyDuelMap = "false">
+</MAP>
+
+<MAP id="39" MapName ="[Lv.71] Secret Test Room" 
+	MapImageName="challengequest_research.bmp" 
+	BannerName = "banner_robot.tga" 
+	ExpRatio ="1.0" MaxPlayers ="3" 
+	bOnlyDuelMap = "false">
+</MAP>
+
+<MAP id="117" MapName ="[Lv.91] Scrider The God" 
+	MapImageName="challengequest_research.bmp" 
+	BannerName = "banner_guerr.tga" 
+	ExpRatio ="1.0" MaxPlayers ="3" 
+	bOnlyDuelMap = "false">
+</MAP>
+</XML>

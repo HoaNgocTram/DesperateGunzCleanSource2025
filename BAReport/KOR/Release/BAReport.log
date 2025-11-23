@@ -1,0 +1,64 @@
+﻿  StdAfx.cpp
+  _WIN32_WINNT not defined. Defaulting to _WIN32_WINNT_MAXVER (see WinSDKVer.h)
+  BAAgreementDlg.cpp
+  BAMainFrame.cpp
+  BAReport.cpp
+  BAReportDlg.cpp
+E:\prolib-1.5-main\Stable\BAReport\KOR\BAReport.cpp(75,2): warning C4996: 'CWinApp::Enable3dControlsStatic': CWinApp::Enable3dControlsStatic is no longer needed. You should remove this call.
+  (compiling source file '/BAReport.cpp')
+  
+E:\prolib-1.5-main\Stable\BAReport\KOR\BAReportDlg.cpp(264,6): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  (compiling source file '/BAReportDlg.cpp')
+  
+E:\prolib-1.5-main\Stable\BAReport\KOR\BAReportDlg.cpp(286,6): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  (compiling source file '/BAReportDlg.cpp')
+  
+  BASingleDlg.cpp
+E:\prolib-1.5-main\Stable\BAReport\KOR\BASingleDlg.cpp(57,19): warning C4996: 'localtime': This function or variable may be unsafe. Consider using localtime_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  (compiling source file '/BASingleDlg.cpp')
+  
+E:\prolib-1.5-main\Stable\BAReport\KOR\BASingleDlg.cpp(68,16): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  (compiling source file '/BASingleDlg.cpp')
+  
+  BASysInfo.cpp
+E:\prolib-1.5-main\Stable\BAReport\KOR\BASysInfo.cpp(1,9): warning C4603: 'INITGUID': macro is not defined or definition is different after precompiled header use
+  (compiling source file '/BASysInfo.cpp')
+      E:\prolib-1.5-main\Stable\BAReport\KOR\BASysInfo.cpp(1,9):
+      Add macro to precompiled header instead of defining here
+      E:\prolib-1.5-main\Stable\BAReport\KOR\BASysInfo.cpp(3,1):
+      use of precompiled header
+  
+E:\prolib-1.5-main\Stable\BAReport\KOR\BASysInfo.cpp(32,12): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  (compiling source file '/BASysInfo.cpp')
+  
+E:\prolib-1.5-main\Stable\BAReport\KOR\BASysInfo.cpp(134,29): warning C4996: 'wcscpy': This function or variable may be unsafe. Consider using wcscpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  (compiling source file '/BASysInfo.cpp')
+  
+E:\prolib-1.5-main\Stable\BAReport\KOR\BASysInfo.cpp(180,25): warning C4996: 'wcscpy': This function or variable may be unsafe. Consider using wcscpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  (compiling source file '/BASysInfo.cpp')
+  
+E:\prolib-1.5-main\Stable\BAReport\KOR\BASysInfo.cpp(128,29): warning C4996: 'swprintf': function has been changed to conform with the ISO C standard, adding an extra character count parameter. To use the traditional Microsoft version, set _CRT_NON_CONFORMING_SWPRINTFS.
+  (compiling source file '/BASysInfo.cpp')
+  
+E:\prolib-1.5-main\Stable\BAReport\KOR\BASysInfo.cpp(131,29): warning C4996: 'swprintf': function has been changed to conform with the ISO C standard, adding an extra character count parameter. To use the traditional Microsoft version, set _CRT_NON_CONFORMING_SWPRINTFS.
+  (compiling source file '/BASysInfo.cpp')
+  
+E:\prolib-1.5-main\Stable\BAReport\KOR\BASysInfo.cpp(137,29): warning C4996: 'wcsncpy': This function or variable may be unsafe. Consider using wcsncpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  (compiling source file '/BASysInfo.cpp')
+  
+E:\prolib-1.5-main\Stable\BAReport\KOR\BASysInfo.cpp(147,25): warning C4996: 'swprintf': function has been changed to conform with the ISO C standard, adding an extra character count parameter. To use the traditional Microsoft version, set _CRT_NON_CONFORMING_SWPRINTFS.
+  (compiling source file '/BASysInfo.cpp')
+  
+E:\prolib-1.5-main\Stable\BAReport\KOR\BASysInfo.cpp(149,25): warning C4996: 'swprintf': function has been changed to conform with the ISO C standard, adding an extra character count parameter. To use the traditional Microsoft version, set _CRT_NON_CONFORMING_SWPRINTFS.
+  (compiling source file '/BASysInfo.cpp')
+  
+E:\prolib-1.5-main\Stable\BAReport\KOR\BASysInfo.cpp(178,25): warning C4996: 'swprintf': function has been changed to conform with the ISO C standard, adding an extra character count parameter. To use the traditional Microsoft version, set _CRT_NON_CONFORMING_SWPRINTFS.
+  (compiling source file '/BASysInfo.cpp')
+  
+  BATransferDlg.cpp
+  FileTransfer.cpp
+E:\prolib-1.5-main\Stable\BAReport\KOR\FileTransfer.cpp(114,20): warning C4244: 'initializing': conversion from 'ULONGLONG' to 'DWORD', possible loss of data
+  (compiling source file '/FileTransfer.cpp')
+  
+  Generating Code...
+  BAReport.vcxproj -> E:\prolib-1.5-main\Stable\BAReport\KOR\Release\BAReport.exe
