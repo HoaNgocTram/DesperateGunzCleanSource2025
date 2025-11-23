@@ -45,6 +45,7 @@
 - HUD conversion
 - Multiple Shop types including cash and ladder
 - Sort and categorize zitem.xml zitem_cash zitem_event zitem_medal
+- Focus mode when you respawn, private messages, matchmaking
 - Create a Clan with just 1 person
 ### Easy Anti-Cheat
 I'm not using the EAC branch right now because you might not be familiar with the way to install it integrated into the source. However I'm not removing it, if you know how to use it, enable _EAC and enjoy
