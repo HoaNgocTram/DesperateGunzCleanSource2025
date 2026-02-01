@@ -1,7 +1,72 @@
 ﻿C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Microsoft\VC\v170\Microsoft.CppBuild.targets(520,5): warning MSB8004: Output Directory does not end with a trailing slash.  This build instance will add the slash as it is required to allow proper evaluation of the Output Directory.
+cl : command line  warning D9035: option 'Gm' has been deprecated and will be removed in a future release
+  ExceptionAttacher.cpp
+E:\DesperateGunzCleanSource2025\CSCommon\Include\MMatchItem.h(146,1): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+  (compiling source file '/ExceptionAttacher.cpp')
+  
+E:\DesperateGunzCleanSource2025\CSCommon\Include\MMatchObject.h(914,1): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+  (compiling source file '/ExceptionAttacher.cpp')
+  
+E:\DesperateGunzCleanSource2025\CSCommon\Include\MMatchObject.h(1126,1): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+  (compiling source file '/ExceptionAttacher.cpp')
+  
+E:\DesperateGunzCleanSource2025\CSCommon\Include\MMatchStageSetting.h(87,1): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+  (compiling source file '/ExceptionAttacher.cpp')
+  
+E:\DesperateGunzCleanSource2025\CSCommon\Include\MMatchStageSetting.h(139,1): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+  (compiling source file '/ExceptionAttacher.cpp')
+  
+E:\DesperateGunzCleanSource2025\CSCommon\Include\MMatchStageSetting.h(246,1): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+  (compiling source file '/ExceptionAttacher.cpp')
+  
+E:\DesperateGunzCleanSource2025\CSCommon\Include\MMatchStageSetting.h(318,1): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+  (compiling source file '/ExceptionAttacher.cpp')
+  
+E:\DesperateGunzCleanSource2025\CSCommon\Include\RealCPNet.h(35,14): warning C4091: 'typedef ': ignored on left of 'RCP_IO_OPERATION' when no variable is declared
+  (compiling source file '/ExceptionAttacher.cpp')
+  
+E:\DesperateGunzCleanSource2025\CSCommon\Include\MMatchRule.h(144,1): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+  (compiling source file '/ExceptionAttacher.cpp')
+  
+E:\DesperateGunzCleanSource2025\CSCommon\Include\MMatchTransDataType.h(351,1): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+  (compiling source file '/ExceptionAttacher.cpp')
+  
+E:\DesperateGunzCleanSource2025\CSCommon\Include\MMatchWorldItem.h(94,1): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+  (compiling source file '/ExceptionAttacher.cpp')
+  
+E:\DesperateGunzCleanSource2025\CSCommon\Include\MMatchWorldItem.h(124,1): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+  (compiling source file '/ExceptionAttacher.cpp')
+  
+E:\DesperateGunzCleanSource2025\CSCommon\Include\MMatchStage.h(23,1): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+  (compiling source file '/ExceptionAttacher.cpp')
+  
+E:\DesperateGunzCleanSource2025\CSCommon\Include\MMatchStage.h(191,1): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+  (compiling source file '/ExceptionAttacher.cpp')
+  
+E:\DesperateGunzCleanSource2025\CSCommon\Include\MMatchStage.h(335,1): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+  (compiling source file '/ExceptionAttacher.cpp')
+  
+E:\DesperateGunzCleanSource2025\CSCommon\Include\MMatchServer.h(355,1): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+  (compiling source file '/ExceptionAttacher.cpp')
+  
+E:\DesperateGunzCleanSource2025\CSCommon\Include\MMatchServer.h(398,1): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+  (compiling source file '/ExceptionAttacher.cpp')
+  
+E:\DesperateGunzCleanSource2025\CSCommon\Include\MMatchServer.h(448,1): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+  (compiling source file '/ExceptionAttacher.cpp')
+  
+E:\DesperateGunzCleanSource2025\CSCommon\Include\MMatchServer.h(738,1): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+  (compiling source file '/ExceptionAttacher.cpp')
+  
+  Skipping... (no relevant changes detected)
+  MServerStatus.cpp
+  MLocatorStatistics.cpp
+  MLocatorDBMgr.cpp
+  MLocatorConfig.cpp
+  MLocator.cpp
+  Locator.cpp
   Generating code
-  0 of 1291 functions ( 0.0%) were compiled, the rest were copied from previous compilation.
-    0 functions were new in current compilation
-    0 functions had inline decision re-evaluated but remain unchanged
+  Previous IPDB and IOBJ mismatch, fall back to full compilation.
+  All 1291 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
   Finished generating code
   Locator.vcxproj -> E:\DesperateGunzCleanSource2025\Build\Locator\Locator.exe
