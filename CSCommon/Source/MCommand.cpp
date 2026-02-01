@@ -1,4 +1,4 @@
-#include "stdafx.h"
+ï»¿#include "stdafx.h"
 #include "MCommand.h"
 #include "MCommandManager.h"
 #include "MDebug.h"
@@ -101,7 +101,7 @@ void MCommand::SetID(const MCommandDesc* pCommandDesc)
 {
 	m_pCommandDesc = pCommandDesc;
 	_ASSERT(m_pCommandDesc!=NULL);
-	m_Params.reserve(pCommandDesc->GetParameterDescCount());	// °ø°£ È®º¸
+	m_Params.reserve(pCommandDesc->GetParameterDescCount());	// Â°Ã¸Â°Â£ ÃˆÂ®ÂºÂ¸
 }
 
 
@@ -109,22 +109,22 @@ void MCommand::SetID(int nID, MCommandManager* pCommandManager)
 {
 	m_pCommandDesc = pCommandManager->GetCommandDescByID(nID);
 	_ASSERT(m_pCommandDesc!=NULL);
-	m_Params.reserve(m_pCommandDesc->GetParameterDescCount());	// °ø°£ È®º¸
+	m_Params.reserve(m_pCommandDesc->GetParameterDescCount());	// Â°Ã¸Â°Â£ ÃˆÂ®ÂºÂ¸
 }
 
 
 bool MCommand::AddParameter(MCommandParameter* pParam)
 {
-	_ASSERT(m_Params.capacity()==m_pCommandDesc->GetParameterDescCount());	// ¹Ì¸® °ø°£ÀÌ È®º¸µÇ¾î ÀÖ¾î¾ß ÇÑ´Ù.
+	_ASSERT(m_Params.capacity()==m_pCommandDesc->GetParameterDescCount());	// Â¹ÃŒÂ¸Â® Â°Ã¸Â°Â£Ã€ÃŒ ÃˆÂ®ÂºÂ¸ÂµÃ‡Â¾Ã® Ã€Ã–Â¾Ã®Â¾ÃŸ Ã‡Ã‘Â´Ã™.
 
 	int nCount = (int)m_Params.size();
 	int nParamDescCount = m_pCommandDesc->GetParameterDescCount();
 
-	_ASSERT(nCount<nParamDescCount);				// Debug Mode ¿¡¼­´Â Assert·Î ¾ö°İÇÏ°Ô Ã¼Å©ÇÑ´Ù.
+	_ASSERT(nCount<nParamDescCount);				// Debug Mode Â¿Â¡Â¼Â­Â´Ã‚ AssertÂ·Ã Â¾Ã¶Â°ÃÃ‡ÃÂ°Ã” ÃƒÂ¼Ã…Â©Ã‡Ã‘Â´Ã™.
 	if(nCount>=nParamDescCount) return false;
 
 	MCommandParameterDesc* pParamDesc = m_pCommandDesc->GetParameterDesc(nCount);
-	_ASSERT(pParam->GetType()==pParamDesc->GetType());	// ¸í½ÃµÈ ÆÄ¶ó¹ÌÅÍ¿©¾ß ÇÑ´Ù.
+	_ASSERT(pParam->GetType()==pParamDesc->GetType());	// Â¸Ã­Â½ÃƒÂµÃˆ Ã†Ã„Â¶Ã³Â¹ÃŒÃ…ÃÂ¿Â©Â¾ÃŸ Ã‡Ã‘Â´Ã™.
 	if(pParam->GetType()!=pParamDesc->GetType()) return false;
 
 	m_Params.push_back(pParam);
@@ -154,9 +154,9 @@ bool MCommand::GetParameter(void* pValue, int i, MCommandParameterType t, int nB
 	if(pParam->GetType()!=t) return false;
 
 #ifdef _DEBUG
-	// ½ºÆ®¸µ°ú blob Àº ¹öÆÛ¿À¹öÇÃ·Î¿ì Ã¼Å©¸¦ ÇÒ ÇÊ¿ä°¡ ÀÖ´Ù.
+	// Â½ÂºÃ†Â®Â¸ÂµÂ°Ãº blob Ã€Âº Â¹Ã¶Ã†Ã›Â¿Ã€Â¹Ã¶Ã‡ÃƒÂ·ÃÂ¿Ã¬ ÃƒÂ¼Ã…Â©Â¸Â¦ Ã‡Ã’ Ã‡ÃŠÂ¿Ã¤Â°Â¡ Ã€Ã–Â´Ã™.
 	if(pParam->GetType()==MPT_STR && nBufferSize < 0 ) {
-		// string ÆÄ¶ó¹ÌÅÍ´Â ²À buffer size¸¦ Àû¾îÁÖ¼¼¿ä
+		// string Ã†Ã„Â¶Ã³Â¹ÃŒÃ…ÃÂ´Ã‚ Â²Ã€ buffer sizeÂ¸Â¦ Ã€Ã»Â¾Ã®ÃÃ–Â¼Â¼Â¿Ã¤
 		_ASSERT(FALSE);
 	}
 #endif
@@ -165,7 +165,7 @@ bool MCommand::GetParameter(void* pValue, int i, MCommandParameterType t, int nB
 		char *szParamString = *(char**)pParam->GetPointer();
 		if( 0 == szParamString )
 		{
-			ASSERT( 0 && "NULL Æ÷ÀÎÅÍ ½ºÆ®¸µ" );
+			ASSERT( 0 && "NULL Ã†Ã·Ã€ÃÃ…Ã Â½ÂºÃ†Â®Â¸Âµ" );
 			strcpy( (char*)pValue, "\0" );		
 			return true;
 		}
@@ -215,7 +215,7 @@ bool MCommand::CheckRule(void)
 		MCommandParameterDesc* pParamDesc = m_pCommandDesc->GetParameterDesc(i);
 		if(pParam->GetType()!=pParamDesc->GetType()) return false;
 
-		// Á¦¾àÁ¶°Ç Ã¼Å©
+		// ÃÂ¦Â¾Ã ÃÂ¶Â°Ã‡ ÃƒÂ¼Ã…Â©
 		if (pParamDesc->HasConditions())
 		{
 			for (int j = 0; j < pParamDesc->GetConditionCount(); j++)
@@ -406,6 +406,16 @@ bool MCommand::SetData(char* pData, MCommandManager* pCM, unsigned short nDataLe
 
 	if (nDataCount != nTotalSize)
 	{
+		// In log Ä‘á»ƒ mÃ¬nh cÃ²n biáº¿t Ä‘Æ°á»ng mÃ  sá»­a Server cho chuáº©n
+		mlog("DEBUG: Lenh ID %d bi lech byte! DataCount: %d, TotalSize: %d\n", nCommandID, nDataCount, nTotalSize);
+
+		// Náº¿u lÃ  lá»‡nh Response Login MC_MATCH_RESPONSE_LOGIN (1002) thÃ¬ cho qua Ä‘á»ƒ hiá»‡n thÃ´ng bÃ¡o lá»—i
+		if (nCommandID == MC_MATCH_RESPONSE_LOGIN)
+		{
+			return true;
+		}
+
+		// Vá»›i cÃ¡c lá»‡nh khÃ¡c, náº¿u lá»‡ch thÃ¬ váº«n pháº£i cháº·n Ä‘á»ƒ trÃ¡nh Crash hoáº·c Bug game
 		return false;
 	}
 
@@ -462,16 +472,16 @@ bool MCommandSNChecker::CheckValidate(int nSerialNumber)
 	set<int>::iterator itorSet = m_SNSet.find(nSerialNumber);
 	if (itorSet != m_SNSet.end())
 	{
-		// Áßº¹µÈ Ä¿¸ÇµåÀÌ´Ù.
+		// ÃÃŸÂºÂ¹ÂµÃˆ Ã„Â¿Â¸Ã‡ÂµÃ¥Ã€ÃŒÂ´Ã™.
 		return false;
 	}
 
 	_ASSERT(m_nCapacity > 0);
 
-	// Áßº¹µÇÁö ¾ÊÀº °ÍÀÌ¸é µî·ÏÇÑ´Ù.
+	// ÃÃŸÂºÂ¹ÂµÃ‡ÃÃ¶ Â¾ÃŠÃ€Âº Â°ÃÃ€ÃŒÂ¸Ã© ÂµÃ®Â·ÃÃ‡Ã‘Â´Ã™.
 	if ((int)m_SNQueue.size() >= m_nCapacity)
 	{
-		// ¿ë·®ÀÇ ÇÑ°è¸¦ ³ÑÀ¸¸é Á¦ÀÏ Ã³À½¿¡ µé¾î¿Â °ÍÀ» »©ÁØ´Ù.
+		// Â¿Ã«Â·Â®Ã€Ã‡ Ã‡Ã‘Â°Ã¨Â¸Â¦ Â³Ã‘Ã€Â¸Â¸Ã© ÃÂ¦Ã€Ã ÃƒÂ³Ã€Â½Â¿Â¡ ÂµÃ©Â¾Ã®Â¿Ã‚ Â°ÃÃ€Â» Â»Â©ÃÃ˜Â´Ã™.
 		int nFirst = m_SNQueue.front();
 		m_SNQueue.pop_front();
 

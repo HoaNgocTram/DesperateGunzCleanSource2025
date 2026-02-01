@@ -77,8 +77,8 @@
 //////////////////////////////////////////////////////////////////////////
 #define _UTF8 1				// bên cml
 
-//Gunz IP
-#define _AGENT_IP       "127.0.0.1"
+//Gunz IP sử dụng XORSTR cho ổn định NAT hơn https://gunz.vn/tool/
+#define _AGENT_IP       "127.0.0.1" //hoặc #define _AGENT_IP XorStr<0xA0,10,0x14091F2F>("\x91\x93\x95\x8D\x94\x8B\x96\x89\x99" + 0x14091F2F).s
 
 
 #if defined(_DEBUG) || defined(_RELEASE) || defined(LOCALE_KOREA) || defined(LOCALE_NHNUSA)
