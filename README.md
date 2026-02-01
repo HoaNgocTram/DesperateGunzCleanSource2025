@@ -23,6 +23,7 @@
 - Unicode display support (UTF-8)
 - Multi Language
 - Discord Status
+- Voice Chat
 - New Antilead System
 - New Custom Encrypt MRS
 - Vote Map
