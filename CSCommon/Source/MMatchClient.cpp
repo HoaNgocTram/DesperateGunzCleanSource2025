@@ -1,4 +1,4 @@
-#include "stdafx.h"
+ï»¿#include "stdafx.h"
 #include "MMatchClient.h"
 #include "MErrorTable.h"
 #include "MSharedCommandTable.h"
@@ -197,7 +197,7 @@ bool MMatchClient::Create(unsigned short nUDPPort)
 	m_SafeUDP.SetCustomRecvCallback(UDPSocketRecvEvent);
 	SetUDPTestProcess(false);
 
-	// Agent ¼ÒÄÏ ÀÌº¥Æ® ¿¬°á
+	// Agent Â¼Ã’Ã„Ã Ã€ÃŒÂºÂ¥Ã†Â® Â¿Â¬Â°Ã¡
 	m_AgentSocket.SetCallbackContext(this);
 	m_AgentSocket.SetConnectCallback(SocketConnectEvent);
 	m_AgentSocket.SetDisconnectCallback(SocketDisconnectEvent);
@@ -254,20 +254,20 @@ bool MMatchClient::OnCommand(MCommand* pCommand)
 
 	if ( (pCommand->m_pCommandDesc->IsFlag(MCDT_PEER2PEER)==true) )
 	{
-		// Peer Network ¾ÈÅ¸°í OnCommand ºÒ¸°°æ¿ì CommUID¸¦ PlayerUID·Î Ä¡È¯
+		// Peer Network Â¾ÃˆÃ…Â¸Â°Ã­ OnCommand ÂºÃ’Â¸Â°Â°Ã¦Â¿Ã¬ CommUIDÂ¸Â¦ PlayerUIDÂ·ÃŽ Ã„Â¡ÃˆÂ¯
 		if (pCommand->GetSenderUID() == GetUID())
 		{
 			pCommand->SetSenderUID(GetPlayerUID());
 		}
 		else
 		{
-			// PeerÀÇ ÆÐÅ¶ ½Ã¸®¾óÀº ¿©±â¼­ Ã¼Å©ÇÑ´Ù.
+			// PeerÃ€Ã‡ Ã†ÃÃ…Â¶ Â½ÃƒÂ¸Â®Â¾Ã³Ã€Âº Â¿Â©Â±Ã¢Â¼Â­ ÃƒÂ¼Ã…Â©Ã‡Ã‘Â´Ã™.
 			MMatchPeerInfo* pPeer = FindPeer(pCommand->GetSenderUID());
 			if (pPeer)
 			{
 				if (!pPeer->CheckCommandValidate(pCommand))
 				{
-					// ¾ÏÈ£È­¾ÈÇÑ µ¥ÀÌÅ¸´Â ¹«½Ã
+					// Â¾ÃÃˆÂ£ÃˆÂ­Â¾ÃˆÃ‡Ã‘ ÂµÂ¥Ã€ÃŒÃ…Â¸Â´Ã‚ Â¹Â«Â½Ãƒ
 					if (pCommand->m_pCommandDesc->IsFlag(MCCT_NON_ENCRYPTED) == false)
 					{
 						return false;
@@ -281,45 +281,52 @@ bool MMatchClient::OnCommand(MCommand* pCommand)
 	switch(pCommand->GetID())
 	{
 		case MC_MATCH_RESPONSE_LOGIN:
+		{
+			int nResult = 0;
+			char nServerMode = 0;
+			unsigned char nUGradeID = 0, nPGradeID = 0;
+			int nCountryFlag = 0, nCash = 0, nEvent = 0;
+			MUID uidPlayer = MUID(0, 0);
+			char szServerName[256] = "";
+			char szAccountID[MAX_USERID_STRING_LEN] = "";
+			bool bEnabledSurvivalMode = false;
+			bool bEnabledDuelTournament = false;
+			unsigned char* pbyGuidReqMsg = NULL;
+
+			// BÃ³c tÃ¡ch cÃ¡c tham sá»‘ cÆ¡ báº£n (0 - 11)
+			// DÃ¹ng if Ä‘á»ƒ trÃ¡nh crash náº¿u Server gá»­i thiáº¿u, nhÆ°ng khÃ´ng dÃ¹ng break ngay Ä‘á»ƒ váº«n gá»i Ä‘Æ°á»£c OnResponse
+			pCommand->GetParameter(&nResult, 0, MPT_INT);
+			pCommand->GetParameter(szServerName, 1, MPT_STR, sizeof(szServerName));
+			pCommand->GetParameter(&nServerMode, 2, MPT_CHAR);
+			pCommand->GetParameter(szAccountID, 3, MPT_STR, MAX_USERID_STRING_LEN);
+			pCommand->GetParameter(&nUGradeID, 4, MPT_UCHAR);
+			pCommand->GetParameter(&nPGradeID, 5, MPT_UCHAR);
+			pCommand->GetParameter(&nCountryFlag, 6, MPT_INT);
+			pCommand->GetParameter(&nCash, 7, MPT_INT);
+			pCommand->GetParameter(&nEvent, 8, MPT_INT);
+			pCommand->GetParameter(&uidPlayer, 9, MPT_UID);
+			pCommand->GetParameter(&bEnabledSurvivalMode, 10, MPT_BOOL);
+			pCommand->GetParameter(&bEnabledDuelTournament, 11, MPT_BOOL);
+
+			// Xá»­ lÃ½ tham sá»‘ thá»© 12 (Blob) má»™t cÃ¡ch an toÃ n
+			if (pCommand->GetParameterCount() > 12)
 			{
-				int nResult;
-				char nServerMode;
-				unsigned char nUGradeID, nPGradeID;
-				int nCountryFlag, nCash, nEvent;
-				MUID uidPlayer;
-				char szServerName[256];
-				char szAccountID[MAX_USERID_STRING_LEN];
-				bool bEnabledSurvivalMode;
-				bool bEnabledDuelTournament;
-
-				int nParamindex = 0;
-
-				pCommand->GetParameter(&nResult,		nParamindex++, MPT_INT);
-				pCommand->GetParameter(szServerName,	nParamindex++, MPT_STR, sizeof(szServerName) );
-				pCommand->GetParameter(&nServerMode,	nParamindex++, MPT_CHAR);
-				pCommand->GetParameter(szAccountID,		nParamindex++, MPT_STR, MAX_USERID_STRING_LEN );
-				pCommand->GetParameter(&nUGradeID,		nParamindex++, MPT_UCHAR);
-				pCommand->GetParameter(&nPGradeID,		nParamindex++, MPT_UCHAR);
-				pCommand->GetParameter(&nCountryFlag,   nParamindex++, MPT_INT);
-				pCommand->GetParameter(&nCash,			nParamindex++, MPT_INT);
-				pCommand->GetParameter(&nEvent,			nParamindex++, MPT_INT);
-				pCommand->GetParameter(&uidPlayer,		nParamindex++, MPT_UID);
-				pCommand->GetParameter(&bEnabledSurvivalMode,	nParamindex++, MPT_BOOL);
-				pCommand->GetParameter(&bEnabledDuelTournament, nParamindex++, MPT_BOOL);
-
-				MCommandParameter* pParam = pCommand->GetParameter(nParamindex++);
-				if (pParam->GetType()!=MPT_BLOB) break;
-				void* pBlob = pParam->GetPointer();
-				if( NULL == pBlob )
-					break;
-
-				int nCount = MGetBlobArrayCount(pBlob);
-				unsigned char* pbyGuidReqMsg = (unsigned char*)MGetBlobArrayElement(pBlob, 0);
-
-				OnResponseMatchLogin(pCommand->GetSenderUID(), nResult, szServerName, MMatchServerMode(nServerMode), 
-					szAccountID, MMatchUserGradeID(nUGradeID), MMatchPremiumGradeID(nPGradeID), nCountryFlag, nCash, nEvent, uidPlayer, bEnabledSurvivalMode, bEnabledDuelTournament, pbyGuidReqMsg);
+				MCommandParameter* pParam = pCommand->GetParameter(12);
+				if (pParam && pParam->GetType() == MPT_BLOB)
+				{
+					void* pBlob = pParam->GetPointer();
+					if (pBlob != NULL && MGetBlobArrayCount(pBlob) > 0)
+					{
+						pbyGuidReqMsg = (unsigned char*)MGetBlobArrayElement(pBlob, 0);
+					}
+				}
 			}
-			break;
+
+			// Cuá»‘i cÃ¹ng luÃ´n gá»i hÃ m pháº£n há»“i Ä‘á»ƒ xá»­ lÃ½ Logic hiá»‡n lá»—i hoáº·c vÃ o game
+			OnResponseMatchLogin(pCommand->GetSenderUID(), nResult, szServerName, MMatchServerMode(nServerMode),
+				szAccountID, MMatchUserGradeID(nUGradeID), MMatchPremiumGradeID(nPGradeID), nCountryFlag, nCash, nEvent, uidPlayer, bEnabledSurvivalMode, bEnabledDuelTournament, pbyGuidReqMsg);
+			}
+		break;
 		case MC_MATCH_OBJECT_CACHE:
 			{
 				unsigned char nType;
@@ -543,8 +550,8 @@ void MMatchClient::CastStageBridgePeer(const MUID& uidChar, const MUID& uidStage
 {
 	MCommand* pCmd = new MCommand(m_CommandManager.GetCommandDescByID(MC_MATCH_BRIDGEPEER), GetServerUID(), m_This);		
 	pCmd->AddParameter(new MCommandParameterUID(uidChar));
-	pCmd->AddParameter(new MCommandParameterUInt(0));	// ¼ö½ÅÃø¿¡¼­ IP·Î Ä¡È¯µÊ
-	pCmd->AddParameter(new MCommandParameterUInt(0));		// ¼ö½ÅÃø¿¡¼­ Port·Î Ä¡È¯µÊ
+	pCmd->AddParameter(new MCommandParameterUInt(0));	// Â¼Ã¶Â½Ã…ÃƒÃ¸Â¿Â¡Â¼Â­ IPÂ·ÃŽ Ã„Â¡ÃˆÂ¯ÂµÃŠ
+	pCmd->AddParameter(new MCommandParameterUInt(0));		// Â¼Ã¶Â½Ã…ÃƒÃ¸Â¿Â¡Â¼Â­ PortÂ·ÃŽ Ã„Â¡ÃˆÂ¯ÂµÃŠ
 	
 	MSafeUDP* pSafeUDP = GetSafeUDP();
 	SendCommandByUDP(pCmd, GetServerIP(), GetServerPeerPort());
@@ -558,11 +565,11 @@ void MMatchClient::OnUDPTest(const MUID& uidChar)
 	if (pPeer) {
 
 #ifdef _DEBUG
-		if ( //(strcmp("¹ß·»Å¸ÀÎ", pPeer->CharInfo.szName)==0) ||
-			(strcmp("¹öµå", pPeer->CharInfo.szName)==0) ||
+		if ( //(strcmp("Â¹ÃŸÂ·Â»Ã…Â¸Ã€ÃŽ", pPeer->CharInfo.szName)==0) ||
+			(strcmp("Â¹Ã¶ÂµÃ¥", pPeer->CharInfo.szName)==0) ||
 			(strcmp("dddd", pPeer->CharInfo.szName)==0) ||
-			(strcmp("¶ó¿ÂÇÏÁ¦5", pPeer->CharInfo.szName)==0) ||
-			(strcmp("¶ó¿ÂÇÏÁ¦6", pPeer->CharInfo.szName)==0) )
+			(strcmp("Â¶Ã³Â¿Ã‚Ã‡ÃÃÂ¦5", pPeer->CharInfo.szName)==0) ||
+			(strcmp("Â¶Ã³Â¿Ã‚Ã‡ÃÃÂ¦6", pPeer->CharInfo.szName)==0) )
 		{
 			return;
 		}
@@ -752,10 +759,10 @@ void MMatchClient::OnAgentError(int nError)
 
 void MMatchClient::SendCommand(MCommand* pCommand)
 {
-	// P2PÀÏ°æ¿ì¿¡´Â UDP¸¦ ÀÌ¿ë
+	// P2PÃ€ÃÂ°Ã¦Â¿Ã¬Â¿Â¡Â´Ã‚ UDPÂ¸Â¦ Ã€ÃŒÂ¿Ã«
 	if (pCommand->m_pCommandDesc->IsFlag(MCDT_PEER2PEER)==true)
 	{
-		// ½Ã¸®¾ó ÀÔ·Â
+		// Â½ÃƒÂ¸Â®Â¾Ã³ Ã€Ã”Â·Ã‚
 		MakeUDPCommandSerialNumber(pCommand);
 
 		if (GetBridgePeerFlag() == false) {
@@ -764,7 +771,7 @@ void MMatchClient::SendCommand(MCommand* pCommand)
 			if (pCommand->GetReceiverUID() == MUID(0,0)) {	// BroadCasting
 				int nTunnelingCount = 0;
 
-				// Peer2Peer ¸Þ¼¼Áö´Â Sender°¡ ÇÃ·¹ÀÌ¾îÀÌ´Ù.
+				// Peer2Peer Â¸ÃžÂ¼Â¼ÃÃ¶Â´Ã‚ SenderÂ°Â¡ Ã‡ÃƒÂ·Â¹Ã€ÃŒÂ¾Ã®Ã€ÃŒÂ´Ã™.
 				for (MMatchPeerInfoList::iterator itor = m_Peers.begin(); 
 					itor != m_Peers.end(); ++itor)
 				{
@@ -848,7 +855,7 @@ void MMatchClient::SendCommandByUDP(MCommand* pCommand, char* szIP, int nPort)
 	int nPacketSize = CalcPacketSize(pCommand);
 	char* pSendBuf = new char[nPacketSize];
 
-	// ##Áß¿ä## - MMatchServer, MMatchAgent¿Í UDPÅë½ÅÇÒ ¶§¿¡´Â ¾ÏÈ£È­ÇÏÁö ¾Ê´Â Command¸¸ Àü¼ÛÀÌ °¡´ÉÇÏ´Ù. 
+	// ##ÃÃŸÂ¿Ã¤## - MMatchServer, MMatchAgentÂ¿Ã UDPÃ…Ã«Â½Ã…Ã‡Ã’ Â¶Â§Â¿Â¡Â´Ã‚ Â¾ÃÃˆÂ£ÃˆÂ­Ã‡ÃÃÃ¶ Â¾ÃŠÂ´Ã‚ CommandÂ¸Â¸ Ã€Ã¼Â¼Ã›Ã€ÃŒ Â°Â¡Â´Ã‰Ã‡ÃÂ´Ã™. 
 	int nSize = MakeCmdPacket(pSendBuf, nPacketSize, &m_PeerPacketCrypter, pCommand);
 
 
@@ -914,7 +921,7 @@ void MMatchClient::SendCommandByTunneling(MCommand* pCommand)
 				}
 				///////////////////////////////////
 			SendCommandToAgent(pCmd);
-			delete pCmd;	// PACKETQUEUE ¸¸µé¶§±îÁö delete ÀÓ½Ã·Î »ç¿ë
+			delete pCmd;	// PACKETQUEUE Â¸Â¸ÂµÃ©Â¶Â§Â±Ã®ÃÃ¶ delete Ã€Ã“Â½ÃƒÂ·ÃŽ Â»Ã§Â¿Ã«
 		} else {
 			MCommand* pCmd = CreateCommand(MC_AGENT_TUNNELING_UDP, GetAgentServerUID());
 				pCmd->AddParameter(new MCmdParamUID(GetPlayerUID()));
@@ -926,7 +933,7 @@ void MMatchClient::SendCommandByTunneling(MCommand* pCommand)
 				}
 				///////////////////////////////////
 			SendCommandByUDP(pCmd, GetAgentIP(), GetAgentPeerPort());
-			delete pCmd;	// PACKETQUEUE ¸¸µé¶§±îÁö delete ÀÓ½Ã·Î »ç¿ë
+			delete pCmd;	// PACKETQUEUE Â¸Â¸ÂµÃ©Â¶Â§Â±Ã®ÃÃ¶ delete Ã€Ã“Â½ÃƒÂ·ÃŽ Â»Ã§Â¿Ã«
 		}
 	}
 }
@@ -1065,7 +1072,7 @@ void MMatchClient::ParseUDPPacket(char* pData, MPacketHeader* pPacketHeader, DWO
 			unsigned short nCheckSum = MBuildCheckSum(pPacketHeader, pPacketHeader->nSize);
 			if (pPacketHeader->nCheckSum != nCheckSum) {
 				static int nLogCount = 0;
-				if (nLogCount++ < 100) {	// Log Flooding ¹æÁö
+				if (nLogCount++ < 100) {	// Log Flooding Â¹Ã¦ÃÃ¶
 					mlog("MMatchClient::ParseUDPPacket() -> CHECKSUM ERROR(R=%u/C=%u)\n", 
 						pPacketHeader->nCheckSum, nCheckSum);
 				}
@@ -1093,7 +1100,7 @@ void MMatchClient::ParseUDPPacket(char* pData, MPacketHeader* pPacketHeader, DWO
 
 					pCmd->m_Sender = uidPeer;
 				} else {
-					// TODO: ¿©±â ¼öÁ¤ÇØ¾ßÇÔ.
+					// TODO: Â¿Â©Â±Ã¢ Â¼Ã¶ÃÂ¤Ã‡Ã˜Â¾ÃŸÃ‡Ã”.
 					sockaddr_in Addr;
 					Addr.sin_addr.S_un.S_addr = dwIP;
 					Addr.sin_port = nPort;
@@ -1107,8 +1114,8 @@ void MMatchClient::ParseUDPPacket(char* pData, MPacketHeader* pPacketHeader, DWO
 					else if ((MC_RESPONSE_SERVER_LIST_INFO == pCmd->GetID()) ||
 						(MC_RESPONSE_BLOCK_COUNTRY_CODE_IP == pCmd->GetID()))
 					{
-						// Æ¯º°È÷ ÇÏ´Â°Ç ¾øÀ½.
-						// Lcator´Â Peer¼³Á¤ÀÌ µÇÁö ¾Ê±â¶§¹®¿¡ ¿©±â¼­ µû·Î Ã³¸®ÇÔ.
+						// Ã†Â¯ÂºÂ°ÃˆÃ· Ã‡ÃÂ´Ã‚Â°Ã‡ Â¾Ã¸Ã€Â½.
+						// LcatorÂ´Ã‚ PeerÂ¼Â³ÃÂ¤Ã€ÃŒ ÂµÃ‡ÃÃ¶ Â¾ÃŠÂ±Ã¢Â¶Â§Â¹Â®Â¿Â¡ Â¿Â©Â±Ã¢Â¼Â­ ÂµÃ»Â·ÃŽ ÃƒÂ³Â¸Â®Ã‡Ã”.
 
 						/*int nOurIP[] = { 0xB1, 0xB8, 0xB5, 0xAE, 0xB3, 0xB0, 0xAE, 0xB1, 0xB6, 0xB6, 0xAE, 0xB2, 0xB4, 0xB2, 0x80 };
 						char szOurIP[128];
@@ -1132,7 +1139,7 @@ void MMatchClient::ParseUDPPacket(char* pData, MPacketHeader* pPacketHeader, DWO
 					}
 					else if (pCmd->GetID() == MC_UDP_PONG) 
 					{
-						// Æ¯º°È÷ ÇÏ´Â°Ç ¾øÀ½. Command¸¦ ³Ñ°ÜÁÖ±â À§ÇØ¼­...(¹Ø¿¡ Ä¿¸Çµå¸¦ µô¸®Æ®ÇÏ±â¶§¹®¿¡)
+						// Ã†Â¯ÂºÂ°ÃˆÃ· Ã‡ÃÂ´Ã‚Â°Ã‡ Â¾Ã¸Ã€Â½. CommandÂ¸Â¦ Â³Ã‘Â°ÃœÃÃ–Â±Ã¢ Ã€Â§Ã‡Ã˜Â¼Â­...(Â¹Ã˜Â¿Â¡ Ã„Â¿Â¸Ã‡ÂµÃ¥Â¸Â¦ ÂµÃ´Â¸Â®Ã†Â®Ã‡ÃÂ±Ã¢Â¶Â§Â¹Â®Â¿Â¡)
 					}	
 					else 
 					{
@@ -1163,7 +1170,7 @@ void MMatchClient::ParseUDPPacket(char* pData, MPacketHeader* pPacketHeader, DWO
 
 			if (pPacketHeader->nCheckSum != nCheckSum) {
 				static int nLogCount = 0;
-				if (nLogCount++ < 100) {	// Log Flooding ¹æÁö
+				if (nLogCount++ < 100) {	// Log Flooding Â¹Ã¦ÃÃ¶
 					mlog("MMatchClient::ParseUDPPacket() -> CHECKSUM ERROR(R=%u/C=%u)\n", 
 						pPacketHeader->nCheckSum, nCheckSum);
 				}
@@ -1183,7 +1190,7 @@ void MMatchClient::ParseUDPPacket(char* pData, MPacketHeader* pPacketHeader, DWO
 
 				if (!pCmd->SetData(pData, &m_CommandManager))
 				{
-					// TODO: ¿©±â ¼öÁ¤ÇØ¾ßÇÔ.
+					// TODO: Â¿Â©Â±Ã¢ Â¼Ã¶ÃÂ¤Ã‡Ã˜Â¾ÃŸÃ‡Ã”.
 					sockaddr_in Addr;
 					Addr.sin_addr.S_un.S_addr = dwIP;
 					Addr.sin_port = nPort;
@@ -1210,8 +1217,8 @@ void MMatchClient::ParseUDPPacket(char* pData, MPacketHeader* pPacketHeader, DWO
 					pCmd->m_Sender = uidPeer;
 				} else {
 					// Custom: LEAVE THIS HERE. CW AGENT ERROR FIX
-					// Agent¿Í´Â ¾ÏÈ£È­µÈ Ä¿¸Çµå´Â »ç¿ëÇÏÁö ¾Ê´Â´Ù.
-					// TODO: ¿©±â ¼öÁ¤ÇØ¾ßÇÔ.
+					// AgentÂ¿ÃÂ´Ã‚ Â¾ÃÃˆÂ£ÃˆÂ­ÂµÃˆ Ã„Â¿Â¸Ã‡ÂµÃ¥Â´Ã‚ Â»Ã§Â¿Ã«Ã‡ÃÃÃ¶ Â¾ÃŠÂ´Ã‚Â´Ã™.
+					// TODO: Â¿Â©Â±Ã¢ Â¼Ã¶ÃÂ¤Ã‡Ã˜Â¾ÃŸÃ‡Ã”.
 					sockaddr_in Addr;
 					Addr.sin_addr.S_un.S_addr = dwIP;
 					Addr.sin_port = nPort;
@@ -1273,8 +1280,8 @@ void MMatchClient::CastAgentPeerConnect()
 	pCmd->AddParameter(new MCommandParameterUID(GetPlayerUID()));
 	pCmd->AddParameter(new MCommandParameterString("localhost"));
 	pCmd->AddParameter(new MCommandParameterUInt(0));
-	pCmd->AddParameter(new MCommandParameterString(""));	// ¼ö½ÅÃø¿¡¼­ IP·Î Ä¡È¯µÊ
-	pCmd->AddParameter(new MCommandParameterUInt(0));		// ¼ö½ÅÃø¿¡¼­ Port·Î Ä¡È¯µÊ
+	pCmd->AddParameter(new MCommandParameterString(""));	// Â¼Ã¶Â½Ã…ÃƒÃ¸Â¿Â¡Â¼Â­ IPÂ·ÃŽ Ã„Â¡ÃˆÂ¯ÂµÃŠ
+	pCmd->AddParameter(new MCommandParameterUInt(0));		// Â¼Ã¶Â½Ã…ÃƒÃ¸Â¿Â¡Â¼Â­ PortÂ·ÃŽ Ã„Â¡ÃˆÂ¯ÂµÃŠ
 	
 	// MSafeUDP* pSafeUDP = GetSafeUDP();
 	SendCommandByUDP(pCmd, GetAgentIP(), GetAgentPeerPort());

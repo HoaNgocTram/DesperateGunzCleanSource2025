@@ -401,11 +401,11 @@ void ZGameClient::OnPrepareCommand(MCommand* pCommand)
 }
 
 int ZGameClient::OnResponseMatchLogin(const MUID& uidServer, int nResult, const char* szServerName, const MMatchServerMode nServerMode,
-									  const char* szAccountID, const MMatchUserGradeID nUGradeID, const MMatchPremiumGradeID nPGradeID, int nCountryFlag, int nCash, int nEvent,
-									  const MUID& uidPlayer, bool bEnabledSurvivalMode, bool bEnabledDuelTournament, unsigned char* pbyGuidReqMsg)
+	const char* szAccountID, const MMatchUserGradeID nUGradeID, const MMatchPremiumGradeID nPGradeID, int nCountryFlag, int nCash, int nEvent,
+	const MUID& uidPlayer, bool bEnabledSurvivalMode, bool bEnabledDuelTournament, unsigned char* pbyGuidReqMsg)
 {
 	int nRet = MMatchClient::OnResponseMatchLogin(uidServer, nResult, szServerName, nServerMode,
-												  szAccountID, nUGradeID, nPGradeID, nCountryFlag, nCash, nEvent, uidPlayer, bEnabledSurvivalMode, bEnabledDuelTournament, pbyGuidReqMsg);
+		szAccountID, nUGradeID, nPGradeID, nCountryFlag, nCash, nEvent, uidPlayer, bEnabledSurvivalMode, bEnabledDuelTournament, pbyGuidReqMsg);
 
 	ZGetMyInfo()->InitAccountInfo(szAccountID, nUGradeID, nPGradeID, nCountryFlag, nCash, nEvent);
 
@@ -414,7 +414,7 @@ int ZGameClient::OnResponseMatchLogin(const MUID& uidServer, int nResult, const 
 #endif
 	m_LobbyChat = (nUGradeID >= MMUG_HIDE_ADMIN && nUGradeID != MMUG_BLOCKED); // Custom: Auto-enable Lobbychat for staff.
 	m_bAdminNAT = (nUGradeID >= MMUG_HIDE_ADMIN && nUGradeID != MMUG_BLOCKED); // Custom: Admin NAT 
-
+	//mlog("DEBUG: Before login check nResult=%d nRet=%d\n", nResult, nRet);
 	if ((nResult == 0) && (nRet == MOK)) {	// Login successful
 		mlog("Login Successful. \n");
 #ifdef _EAC
@@ -443,23 +443,24 @@ int ZGameClient::OnResponseMatchLogin(const MUID& uidServer, int nResult, const 
 
 #ifdef _HSHIELD
 		int dwRet = _AhnHS_MakeGuidAckMsg(pbyGuidReqMsg,        // [in]
-										  ZGetMyInfo()->GetSystemInfo()->pbyGuidAckMsg // [out]
-										 );
-		if( dwRet != ERROR_SUCCESS )
+			ZGetMyInfo()->GetSystemInfo()->pbyGuidAckMsg // [out]
+		);
+		if (dwRet != ERROR_SUCCESS)
 			mlog("Making Guid Ack Msg Failed. (Error code = %x)\n", dwRet);
 #endif
 
 		// ���⼭ AccountCharList�� ��û�Ѵ�.
 		ZApplication::GetGameInterface()->ChangeToCharSelection();
-	} else {								// Login failed
+	}
+	else {								// Login failed
 		mlog("Login Failed.(ErrCode=%d) \n", nResult);
 
 
 #ifdef LOCALE_NHNUSA
-		if(nResult == 10003)
+		if (nResult == 10003)
 		{	// ����E�ο����� ��ã�µ� ��� �α��� �õ� �Ѵٸ�E10������ ���̸� �ش�.
 			ZApplication::GetGameInterface()->SetErrMaxPlayer(true);
-			ZApplication::GetGameInterface()->SetErrMaxPlayerDelayTime(timeGetTime()+7000);
+			ZApplication::GetGameInterface()->SetErrMaxPlayerDelayTime(timeGetTime() + 7000);
 		}
 		else if (nResult == MERR_COMMAND_INVALID_VERSION)
 		{
@@ -469,25 +470,25 @@ int ZGameClient::OnResponseMatchLogin(const MUID& uidServer, int nResult, const 
 
 			// Just a simple trick to stop the client from responding
 			ZApplication::GetGameInterface()->SetErrMaxPlayer(true);
-			ZApplication::GetGameInterface()->SetErrMaxPlayerDelayTime(timeGetTime()+9000);
+			ZApplication::GetGameInterface()->SetErrMaxPlayerDelayTime(timeGetTime() + 9000);
 #else
 			ZPostDisconnect();
-			if(nResult != MOK)
-				ZApplication::GetGameInterface()->ShowErrorMessage( nResult );
+			if (nResult != MOK)
+				ZApplication::GetGameInterface()->ShowErrorMessage(nResult);
 #endif
 		}
-		else 
+		else
 		{
 			ZPostDisconnect();
-			if(nResult != MOK)
-				ZApplication::GetGameInterface()->ShowErrorMessage( nResult );
+			if (nResult != MOK)
+				ZApplication::GetGameInterface()->ShowErrorMessage(nResult);
 		}
 #else
 		ZPostDisconnect();
 
 		if (nResult != MOK)
 		{
-			ZApplication::GetGameInterface()->ShowErrorMessage( nResult );
+			ZApplication::GetGameInterface()->ShowErrorMessage(nResult);
 		}
 #endif
 		return MOK;
