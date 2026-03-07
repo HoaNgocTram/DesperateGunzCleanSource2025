@@ -10,6 +10,18 @@
 #include "RNameSpace.h"
 _NAMESPACE_REALSPACE2_BEGIN
 
+#pragma once
+
+extern bool g_bHardwareTNL;
+extern bool g_bSupportVS;
+extern bool g_bAvailUserClipPlane;
+
+extern int g_nScreenWidth;
+extern int g_nScreenHeight;
+extern int g_nPicmip;
+extern int g_nScreenType;
+
+
 class RParticleSystem;
 
 // ¹Ù±ù¿¡¼­ ÂE¶ÇÒ¸¸ÇÑ °ÍµE
@@ -55,6 +67,10 @@ extern int g_nFrameCount,g_nLastFrameCount;
 extern float g_fFPS;
 extern int g_nFrameLimitValue;
 
+#ifdef _INPUTFPS
+extern int g_nUpdateLimitValue;
+#endif
+
 extern HWND	g_hWnd;
 extern MZFileSystem *g_pFileSystem;
 extern bool g_isDirect3D9ExEnabled;
@@ -76,7 +92,9 @@ LPDIRECT3DDEVICE9	RGetDevice();
 // ¸ðµåÀE¯ & ÇÃ¸®ÇÎ°EÃ
 void RResetDevice(const RMODEPARAMS *params);
 RRESULT RIsReadyToRender();
-bool RFlip();
+//bool RFlip();
+void RFlip();
+void RClear();
 bool REndScene();
 bool RBeginScene();
 
@@ -147,6 +165,10 @@ LPDIRECT3DSURFACE9 RCreateImageSurface(const char *filename);
 // °¨¸¶°ª ¼³Á¤
 void RSetGammaRamp(unsigned short nGammaValue = 255);
 void RSetFrameLimitPerSeceond(int nFrameLimit = 0);
+
+#ifdef _INPUTFPS
+void RSetUpdateLimitPerSecond(unsigned short nUpdateLimit = 0);
+#endif
 
 
 // Custom: swordtrack size

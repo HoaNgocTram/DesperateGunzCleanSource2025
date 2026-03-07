@@ -18,11 +18,10 @@
 
 //GPU//////////////////////////////////////
 #ifdef _iGPU
-// Chế độ "cho phép iGPU" – chỉ ưu tiên card rời nếu có
 static UINT SelectDiscreteGPU(IDirect3D9* pD3D) {
-	UINT selectedAdapter = D3DADAPTER_DEFAULT;
 	UINT adapterCount = pD3D->GetAdapterCount();
 	UINT bestAdapter = D3DADAPTER_DEFAULT;
+	int bestScore = -1; // Thang điểm để chọn card
 
 	for (UINT i = 0; i < adapterCount; i++) {
 		D3DADAPTER_IDENTIFIER9 adapterInfo;
@@ -32,41 +31,95 @@ static UINT SelectDiscreteGPU(IDirect3D9* pD3D) {
 		std::string desc(adapterInfo.Description);
 		for (auto& c : desc) c = std::tolower(c);
 
-		mlog("Adapter %u: %s (Vendor 0x%04X, Device 0x%04X)\n",
-			i, adapterInfo.Description, adapterInfo.VendorId, adapterInfo.DeviceId);
+		int currentScore = 0;
 
-		bool isDiscrete = false;
-
-		// NVIDIA
-		if (adapterInfo.VendorId == 0x10DE)
-			isDiscrete = true;
-
-		// AMD
+		// Ưu tiên NVIDIA nhất (Thường là card rời trong laptop gaming)
+		if (adapterInfo.VendorId == 0x10DE) {
+			currentScore = 100;
+		}
+		// Tiếp theo là AMD
 		else if (adapterInfo.VendorId == 0x1002) {
-			// Loại bỏ iGPU (Radeon(TM), Vega, 780M,...)
-			if (desc.find("radeon rx") != std::string::npos ||
-				desc.find("radeon pro") != std::string::npos ||
-				desc.find("rdna") != std::string::npos ||
-				desc.find("xt") != std::string::npos)
-				isDiscrete = true;
+			currentScore = 80;
+			// Nếu là dòng RX hoặc XT thì điểm cao hơn iGPU Radeon thường
+			if (desc.find("rx") != std::string::npos || desc.find("xt") != std::string::npos)
+				currentScore = 90;
 		}
-
-		// Intel Arc/Xe
+		// Intel Arc (Card rời mới của Intel rất mạnh)
 		else if (adapterInfo.VendorId == 0x8086) {
-			if (desc.find("arc") != std::string::npos || desc.find("xe") != std::string::npos)
-				isDiscrete = true;
+			if (desc.find("arc") != std::string::npos)
+				currentScore = 85;
+			else
+				currentScore = 10; // iGPU Intel (HD Graphics/UHD) điểm thấp nhất
 		}
 
-		if (isDiscrete) {
-			mlog("Selected discrete GPU: %s (Vendor 0x%04X)\n",
-				adapterInfo.Description, adapterInfo.VendorId);
-			return i;
+		mlog("Adapter %u: %s (Score: %d)\n", i, adapterInfo.Description, currentScore);
+
+		if (currentScore > bestScore) {
+			bestScore = currentScore;
+			bestAdapter = i;
 		}
 	}
 
-	mlog("No discrete GPU found, falling back to default (iGPU)\n");
-	return selectedAdapter;
+	if (bestScore > 10) {
+		D3DADAPTER_IDENTIFIER9 finalInfo;
+		pD3D->GetAdapterIdentifier(bestAdapter, 0, &finalInfo);
+		mlog("Final Selection: %s (Adapter %u)\n", finalInfo.Description, bestAdapter);
+	}
+	else {
+		mlog("No strong discrete GPU found, using default.\n");
+	}
+
+	return bestAdapter;
 }
+// Chế độ "cho phép iGPU" – chỉ ưu tiên card rời nếu có
+//static UINT SelectDiscreteGPU(IDirect3D9* pD3D) {
+//	UINT selectedAdapter = D3DADAPTER_DEFAULT;
+//	UINT adapterCount = pD3D->GetAdapterCount();
+//	UINT bestAdapter = D3DADAPTER_DEFAULT;
+//
+//	for (UINT i = 0; i < adapterCount; i++) {
+//		D3DADAPTER_IDENTIFIER9 adapterInfo;
+//		if (FAILED(pD3D->GetAdapterIdentifier(i, 0, &adapterInfo)))
+//			continue;
+//
+//		std::string desc(adapterInfo.Description);
+//		for (auto& c : desc) c = std::tolower(c);
+//
+//		mlog("Adapter %u: %s (Vendor 0x%04X, Device 0x%04X)\n",
+//			i, adapterInfo.Description, adapterInfo.VendorId, adapterInfo.DeviceId);
+//
+//		bool isDiscrete = false;
+//
+//		// NVIDIA
+//		if (adapterInfo.VendorId == 0x10DE)
+//			isDiscrete = true;
+//
+//		// AMD
+//		else if (adapterInfo.VendorId == 0x1002) {
+//			// Loại bỏ iGPU (Radeon(TM), Vega, 780M,...)
+//			if (desc.find("radeon rx") != std::string::npos ||
+//				desc.find("radeon pro") != std::string::npos ||
+//				desc.find("rdna") != std::string::npos ||
+//				desc.find("xt") != std::string::npos)
+//				isDiscrete = true;
+//		}
+//
+//		// Intel Arc/Xe
+//		else if (adapterInfo.VendorId == 0x8086) {
+//			if (desc.find("arc") != std::string::npos || desc.find("xe") != std::string::npos)
+//				isDiscrete = true;
+//		}
+//
+//		if (isDiscrete) {
+//			mlog("Selected discrete GPU: %s (Vendor 0x%04X)\n",
+//				adapterInfo.Description, adapterInfo.VendorId);
+//			return i;
+//		}
+//	}
+//
+//	mlog("No discrete GPU found, falling back to default (iGPU)\n");
+//	return selectedAdapter;
+//}
 #else
 // Chế độ "chặn iGPU" – yêu cầu card rời mới được vào
 static UINT SelectDiscreteGPU(IDirect3D9* pD3D) {
@@ -132,7 +185,19 @@ extern RFFUNCTION g_pFunctions[RF_ENDOFRFUNCTIONTYPE];
 bool g_bHardwareTNL,g_bSupportVS,g_bAvailUserClipPlane;
 int g_nScreenWidth,g_nScreenHeight,g_nPicmip,g_nScreenType;
 RPIXELFORMAT		g_PixelFormat;
+#ifdef _DX12
+bool g_isD3D9On12 = false;
+bool g_isD3D9Ex = false;
+LPDIRECT3D9 g_pD3D = NULL;
+IDirect3D9Ex* g_pD3DEx = NULL;
+
+//typedef IDirect3D9* (WINAPI* PFN_Direct3DCreate9On12)(
+//	UINT SDKVersion,
+//	D3D9ON12_ARGS* pOverrideList,
+//	UINT NumOverrideEntries);
+#else
 LPDIRECT3D9EX			g_pD3D = NULL;
+#endif
 LPDIRECT3DDEVICE9EX		g_pd3dDevice = NULL;
 D3DADAPTER_IDENTIFIER9	g_DeviceID;
 D3DPRESENT_PARAMETERS	g_d3dpp; 
@@ -166,6 +231,10 @@ double currentTime = timeGetTime();
 int g_nFrameCount=0,g_nLastFrameCount=0;
 float g_fFPS=0;
 int g_nFrameLimitValue=0;
+
+#ifdef _INPUTFPS
+int g_nUpdateLimitValue = 0;
+#endif
 
 DWORD g_dwLastTime=timeGetTime();
 DWORD g_dwLastFPSTime=timeGetTime();
@@ -226,7 +295,65 @@ HRESULT RError(int nErrCode)
 }
 
 //GPU////////////////////////////////////
+#ifdef _DX12
+bool CreateDirect3D9()
+{
+	if (g_pD3D || g_pD3DEx) return true;
 
+	HMODULE hD3D9On12 = LoadLibraryA("d3d9on12.dll");
+	//HMODULE hD3D9On12 = LoadLibraryA("C:\\Windows\\System32\\d3d9on12.dll"); // Chỉ định đường dẫn tuyệt đối
+	//if (hD3D9On12 == NULL) {
+	//	DWORD error = GetLastError();
+	//	mlog("❌ LoadLibrary failed! Error code: %d\n", error);
+	//}
+	//else {
+	//	mlog("✅ d3d9on12.dll loaded at address: %p\n", hD3D9On12);
+	//	// ... code GetProcAddress ...
+	//}
+	if (hD3D9On12)
+	{
+		PFN_Direct3DCreate9On12 pCreate9On12 = (PFN_Direct3DCreate9On12)GetProcAddress(hD3D9On12, "Direct3DCreate9On12");
+		if (pCreate9On12)
+		{
+			D3D9ON12_ARGS args = { 0 };
+			args.Enable9On12 = TRUE;
+
+			// THỬ LẦN 1: Với Version 32 (Chuẩn DX9 Windows)
+			g_pD3D = pCreate9On12(32, &args, 1);
+
+			// THỬ LẦN 2: Nếu lần 1 xịt, thử với D3D_SDK_VERSION của source (thường là 220 hoặc 31)
+			if (!g_pD3D) {
+				g_pD3D = pCreate9On12(D3D_SDK_VERSION, &args, 1);
+			}
+
+			if (g_pD3D)
+			{
+				g_isD3D9On12 = true;
+				mlog("Success: Direct3D9On12 Interface Created!\n");
+				return true;
+			}
+			else {
+				mlog("D3D9On12 returned NULL with both Version 32 and %d\n", D3D_SDK_VERSION);
+			}
+		}
+		FreeLibrary(hD3D9On12);
+	}
+	PFN_Direct3DCreate9On12 pCreate9On12 = (PFN_Direct3DCreate9On12)GetProcAddress(hD3D9On12, "Direct3DCreate9On12");
+	if (!pCreate9On12) {
+		mlog("Fatal: Function 'Direct3DCreate9On12' NOT found in d3d9on12.dll!\n");
+	}
+
+	// Nếu tất cả các nỗ lực DX12 thất bại, mới dùng cái này
+	g_pD3D = Direct3DCreate9(D3D_SDK_VERSION);
+	if (g_pD3D)
+	{
+		g_isD3D9On12 = false;
+		mlog("Using classic Direct3D9 mode.\n");
+		return true;
+	}
+	return false;
+}
+#else
 #ifdef _iGPU
 bool CreateDirect3D9()
 {
@@ -263,6 +390,7 @@ bool CreateDirect3D9()
 
 	return true;
 }
+#endif
 #endif
 ///////////////////////////////
 
@@ -499,30 +627,33 @@ bool RInitDisplay(HWND hWnd, const RMODEPARAMS *params)
         break;
     }
 
+	g_nScreenType = params->nScreenType;
+
     if (params->nScreenType != 2)
     {
         g_nScreenWidth = params->nWidth;
         g_nScreenHeight = params->nHeight;
     }
-    else
-    {
-        g_nScreenWidth = GetSystemMetrics(SM_CXSCREEN);
-        g_nScreenHeight = GetSystemMetrics(SM_CYSCREEN) - getTaskBarHeight() - GetSystemMetrics(SM_CYBORDER);
-    }
+	// CODE MỚI (FIX)
+	else
+	{
+		// Nếu params truyền vào hợp lệ (>0) thì dùng params (từ config.xml)
+		if (params->nWidth > 0 && params->nHeight > 0) {
+			g_nScreenWidth = params->nWidth;
+			g_nScreenHeight = params->nHeight;
+		}
+		else {
+			// Fallback: Nếu config lỗi thì mới lấy full màn hình
+			g_nScreenWidth = GetSystemMetrics(SM_CXSCREEN);
+			g_nScreenHeight = GetSystemMetrics(SM_CYSCREEN);
+		}
+	}
     g_PixelFormat = (params->nScreenType == 0 ? params->PixelFormat : g_d3ddm.Format);
     
     ZeroMemory(&g_d3dpp, sizeof(g_d3dpp));
     g_d3dpp.SwapEffect = D3DSWAPEFFECT_DISCARD;
-    if (g_nScreenType != 2)
-    {
-        g_d3dpp.BackBufferWidth = params->nWidth;
-        g_d3dpp.BackBufferHeight = params->nHeight;
-    }
-    else
-    {
-		g_d3dpp.BackBufferWidth = g_nScreenWidth;
-		g_d3dpp.BackBufferHeight = g_nScreenHeight;  // ← SỬA
-    }
+	g_d3dpp.BackBufferWidth = g_nScreenWidth;
+	g_d3dpp.BackBufferHeight = g_nScreenHeight;
     g_d3dpp.BackBufferCount = bTripleBuffer ? 2 : 1;
     if (params->nScreenType >= 1)
         g_d3dpp.Windowed = true;
@@ -583,6 +714,66 @@ bool RInitDisplay(HWND hWnd, const RMODEPARAMS *params)
 #endif
 
 #ifndef _NVPERFHUD
+#ifdef _DX12
+	// Xác định cờ xử lý (DX12 cần Multithreaded để đạt hiệu năng tốt nhất)
+	DWORD finalBehaviorFlags = BehaviorFlags;
+	if (g_isD3D9On12) {
+		finalBehaviorFlags |= D3DCREATE_MULTITHREADED;
+	}
+
+	// 1. Thử tạo Device (Lần 1 - Dùng card rời đã chọn)
+	HRESULT result = g_pD3D->CreateDevice(
+		g_selectedAdapter,
+		D3DDEVTYPE_HAL,
+		hWnd,
+		finalBehaviorFlags,
+		&g_d3dpp,
+		(IDirect3DDevice9**)&g_pd3dDevice
+	);
+
+	// 2. Nếu thất bại và đang không dùng adapter mặc định, thử lại với adapter mặc định (Fallback)
+	if (FAILED(result) && g_selectedAdapter != D3DADAPTER_DEFAULT)
+	{
+		mlog("CreateDevice failed on GPU %u, falling back to default adapter.\n", g_selectedAdapter);
+		g_selectedAdapter = D3DADAPTER_DEFAULT;
+		result = g_pD3D->CreateDevice(
+			g_selectedAdapter,
+			D3DDEVTYPE_HAL,
+			hWnd,
+			finalBehaviorFlags,
+			&g_d3dpp,
+			(IDirect3DDevice9**)&g_pd3dDevice
+		);
+	}
+
+	// 3. Nếu vẫn thất bại thì dừng game
+	if (FAILED(result))
+	{
+		SAFE_RELEASE(g_pD3D);
+		mlog("Critical: CreateDevice failed (HRESULT=0x%08X)\n", result);
+		return false;
+	}
+
+	// 4. Ghi Log kết quả để kiểm tra xem có đúng là DX12 không
+	D3DADAPTER_IDENTIFIER9 finalId;
+	if (SUCCEEDED(g_pD3D->GetAdapterIdentifier(g_selectedAdapter, 0, &finalId)))
+	{
+		mlog("Device created: %s\n", finalId.Description);
+
+		std::string desc = finalId.Description;
+		for (auto& c : desc) c = std::tolower(c);
+
+		// Kiểm tra xem backend thực sự đang dùng là gì
+		if (g_isD3D9On12 || desc.find("d3d9on12") != std::string::npos || desc.find("microsoft basic render driver") != std::string::npos) {
+			mlog("Final Backend: Direct3D9On12 (DX12 Layer active)\n");
+			g_isD3D9On12 = true; // Đảm bảo biến toàn cục đồng bộ
+		}
+		else {
+			mlog("Final Backend: Native DirectX 9\n");
+			g_isD3D9On12 = false;
+		}
+	}
+#else
     if (g_isDirect3D9ExEnabled) {
         D3DDISPLAYMODEEX displayMode;
         displayMode.Size = sizeof(D3DDISPLAYMODEEX);
@@ -616,6 +807,7 @@ bool RInitDisplay(HWND hWnd, const RMODEPARAMS *params)
             return false;
         }
     }
+#endif
 #else
     UINT AdapterToUse = g_selectedAdapter;
     D3DDEVTYPE DeviceType = D3DDEVTYPE_HAL;
@@ -655,7 +847,10 @@ bool RInitDisplay(HWND hWnd, const RMODEPARAMS *params)
     }
 #endif
 
-    mlog("device created.\n");
+	g_hWnd = hWnd;
+	RAdjustWindow(params);
+
+	mlog("Device created: %dx%d, Type: %d\n", g_nScreenWidth, g_nScreenHeight, g_nScreenType);
 
     g_bUsable = true;
 
@@ -673,8 +868,6 @@ bool RInitDisplay(HWND hWnd, const RMODEPARAMS *params)
         mlog("can't create font\n");
         return false;
     }
-
-    g_hWnd = hWnd;
 
     return true;
 }
@@ -996,13 +1189,13 @@ void RAdjustWindow(const RMODEPARAMS* pModeParams)
 		posX = (scrW - winW) / 2;
 		posY = (scrH - winH) / 2;
 
-		// Tránh taskbar
-		RECT wa;
-		if (SystemParametersInfo(SPI_GETWORKAREA, 0, &wa, 0))
-		{
-			if (posY + winH > wa.bottom) posY = wa.bottom - winH;
-			if (posY < wa.top) posY = wa.top;
-		}
+		//// Tránh taskbar
+		//RECT wa;
+		//if (SystemParametersInfo(SPI_GETWORKAREA, 0, &wa, 0))
+		//{
+		//	if (posY + winH > wa.bottom) posY = wa.bottom - winH;
+		//	if (posY < wa.top) posY = wa.top;
+		//}
 	}
 
 	SetWindowLongPtr(g_hWnd, GWL_STYLE, dwStyle);
@@ -1051,10 +1244,19 @@ void RResetDevice(const RMODEPARAMS* params)
 		g_nScreenWidth = params->nWidth;
 		g_nScreenHeight = params->nHeight;
 	}
+	// CODE MỚI (FIX)
 	else
 	{
-		g_nScreenWidth = params->nWidth;
-		g_nScreenHeight = params->nHeight;
+		// Nếu params truyền vào hợp lệ (>0) thì dùng params (từ config.xml)
+		if (params->nWidth > 0 && params->nHeight > 0) {
+			g_nScreenWidth = params->nWidth;
+			g_nScreenHeight = params->nHeight;
+		}
+		else {
+			// Fallback: Nếu config lỗi thì mới lấy full màn hình
+			g_nScreenWidth = GetSystemMetrics(SM_CXSCREEN);
+			g_nScreenHeight = GetSystemMetrics(SM_CYSCREEN);
+		}
 	}
 	g_PixelFormat = (g_nScreenType == 0 ? params->PixelFormat : g_d3ddm.Format);
 
@@ -1062,16 +1264,9 @@ void RResetDevice(const RMODEPARAMS* params)
 		g_d3dpp.Windowed = true;
 	else
 		g_d3dpp.Windowed = false;
-	if (g_nScreenType != 2)
-	{
-		g_d3dpp.BackBufferWidth = g_nScreenWidth;
-		g_d3dpp.BackBufferHeight = g_nScreenHeight;
-	}
-	else
-	{
-		g_d3dpp.BackBufferWidth = params->nWidth;
-		g_d3dpp.BackBufferHeight = params->nHeight;
-	}
+
+	g_d3dpp.BackBufferWidth = g_nScreenWidth;
+	g_d3dpp.BackBufferHeight = g_nScreenHeight;
 	g_d3dpp.BackBufferFormat = g_PixelFormat;
 
 	switch (RAdvancedGraphics::nMultiSampling)
@@ -1133,30 +1328,61 @@ void RResetDevice(const RMODEPARAMS* params)
 	}
 	g_d3dpp.MultiSampleType = g_MultiSample;
 
-	HRESULT hr = g_pd3dDevice->Reset(&g_d3dpp);
+	HRESULT hr;
 
-	if (g_isDirect3D9ExEnabled) {
-		D3DDISPLAYMODEEX displayMode;
-		displayMode.Size = sizeof(D3DDISPLAYMODEEX);
+	if (g_isDirect3D9ExEnabled)
+	{
+		D3DDISPLAYMODEEX displayMode = {};
+		displayMode.Size = sizeof(displayMode);
 		displayMode.Width = RGetScreenWidth();
 		displayMode.Height = RGetScreenHeight();
 		displayMode.Format = g_d3ddm.Format;
-		displayMode.RefreshRate = 0;
 		displayMode.ScanLineOrdering = D3DSCANLINEORDERING_PROGRESSIVE;
-		hr = g_pd3dDevice->ResetEx(&g_d3dpp, RGetScreenType() != 0 ? &displayMode : nullptr);
+
+		hr = g_pd3dDevice->ResetEx(&g_d3dpp,
+			(RGetScreenType() != 0) ? &displayMode : nullptr);
 	}
-	else {
-		hr = (LPDIRECT3DDEVICE9(g_pd3dDevice)->Reset(&g_d3dpp));
+	else
+	{
+		hr = g_pd3dDevice->Reset(&g_d3dpp);
 	}
 
+	int nRetryCount = 0;
+	const int nMaxRetries = 3;
+
+	// Vòng lặp thử lại nếu Reset thất bại
+	while (nRetryCount < nMaxRetries) {
+		if (g_isDirect3D9ExEnabled) {
+			D3DDISPLAYMODEEX displayMode = {};
+			displayMode.Size = sizeof(displayMode);
+			displayMode.Width = RGetScreenWidth();
+			displayMode.Height = RGetScreenHeight();
+			displayMode.Format = g_d3ddm.Format;
+			displayMode.ScanLineOrdering = D3DSCANLINEORDERING_PROGRESSIVE;
+
+			hr = g_pd3dDevice->ResetEx(&g_d3dpp, (RGetScreenType() != 0) ? &displayMode : nullptr);
+		}
+		else {
+			hr = g_pd3dDevice->Reset(&g_d3dpp);
+		}
+
+		if (hr == D3D_OK) break; // Nếu ngon lành thì thoát vòng lặp ngay
+
+		// Nếu lỗi, ghi log và chờ một chút (khoảng 500ms mỗi lần) rồi thử lại
+		mlog("RResetDevice: Reset failed (hr=%p). Retrying... (%d/%d)\n", hr, nRetryCount + 1, nMaxRetries);
+		Sleep(500);
+		nRetryCount++;
+	}
+
+	// Kiểm tra cuối cùng sau khi đã thử hết số lần
 	_ASSERT(hr == D3D_OK);
 	if (hr != D3D_OK) {
-		int* a = 0;
-		*a = 1; // CRASH #1
+		mlog("RResetDevice: Final attempt failed. Giving up.\n");
+		return; // Dừng lại ở đây nếu vẫn lỗi sau 3 lần thử
 	}
 
 	InitDevice();
-
+	RGetShaderMgr()->Initialize();
 	RAdjustWindow(params);
 
 	if (params->nScreenType != 2)
@@ -1325,8 +1551,10 @@ void RResetDevice(const RMODEPARAMS* params)
 }
 #endif
 /////////////////////////////////////////////////////////////////////
+#ifdef _INPUTFPS
 RRESULT RIsReadyToRender()
 {
+
 	if (!g_pd3dDevice) return R_NOTREADY;
 	HRESULT hr;
 
@@ -1344,6 +1572,7 @@ RRESULT RIsReadyToRender()
 			displayMode.ScanLineOrdering = D3DSCANLINEORDERING_PROGRESSIVE;
 			hr = g_pd3dDevice->ResetEx(&g_d3dpp, RGetScreenType() != 0 ? &displayMode : nullptr);
 			return R_NOTREADY;
+
 		}
 
 		if (hr == D3DERR_DEVICEHUNG)
@@ -1370,18 +1599,104 @@ RRESULT RIsReadyToRender()
 	{
 		if (FAILED(hr = g_pd3dDevice->TestCooperativeLevel()))
 		{
-			// If the device was lost, do not render until we get it back
 			if (D3DERR_DEVICELOST == hr)
 				return R_NOTREADY;
 
-			// Check if the device needs to be resized.
 			if (D3DERR_DEVICENOTRESET == hr)
 				return R_RESTORED;
 		}
 	}
 	return R_OK;
 }
+#else
+//RRESULT RIsReadyToRender()
+//{
+//	if (!g_pd3dDevice) return R_NOTREADY;
+//	HRESULT hr;
+//
+//	if (g_isDirect3D9ExEnabled)
+//	{
+//		hr = g_pd3dDevice->CheckDeviceState(g_hWnd);
+//		if (hr == S_PRESENT_MODE_CHANGED)
+//		{
+//			D3DDISPLAYMODEEX displayMode;
+//			displayMode.Size = sizeof(D3DDISPLAYMODEEX);
+//			displayMode.Width = RGetScreenWidth();
+//			displayMode.Height = RGetScreenHeight();
+//			displayMode.Format = g_d3ddm.Format;
+//			displayMode.RefreshRate = 0;
+//			displayMode.ScanLineOrdering = D3DSCANLINEORDERING_PROGRESSIVE;
+//			hr = g_pd3dDevice->ResetEx(&g_d3dpp, RGetScreenType() != 0 ? &displayMode : nullptr);
+//			return R_NOTREADY;
+//		}
+//
+//		if (hr == D3DERR_DEVICEHUNG)
+//		{
+//			//TODO: restore textures
+//			RFrame_Invalidate();
+//			RBaseTexture_Invalidate();
+//			D3DDISPLAYMODEEX displayMode;
+//			displayMode.Size = sizeof(D3DDISPLAYMODEEX);
+//			displayMode.Width = RGetScreenWidth();
+//			displayMode.Height = RGetScreenHeight();
+//			displayMode.Format = g_d3ddm.Format;
+//			displayMode.RefreshRate = 0;
+//			displayMode.ScanLineOrdering = D3DSCANLINEORDERING_PROGRESSIVE;
+//			hr = g_pd3dDevice->ResetEx(&g_d3dpp, RGetScreenType() != 0 ? &displayMode : nullptr);
+//			RBaseTexture_Restore();
+//			RFrame_Restore();
+//			return R_NOTREADY;
+//		}
+//		return R_OK;
+//	}
+//
+//	else
+//	{
+//		if (FAILED(hr = g_pd3dDevice->TestCooperativeLevel()))
+//		{
+//			// If the device was lost, do not render until we get it back
+//			if (D3DERR_DEVICELOST == hr)
+//				return R_NOTREADY;
+//
+//			// Check if the device needs to be resized.
+//			if (D3DERR_DEVICENOTRESET == hr)
+//				return R_RESTORED;
+//		}
+//	}
+//	return R_OK;
+//}
+RRESULT RIsReadyToRender()
+{
+	if (!g_pd3dDevice)
+		return R_NOTREADY;
 
+	if (g_isDirect3D9ExEnabled)
+	{
+		HRESULT hr = g_pd3dDevice->CheckDeviceState(g_hWnd);
+
+		if (hr == S_PRESENT_MODE_CHANGED)
+			return R_RESTORED;
+
+		if (hr == D3DERR_DEVICELOST ||
+			hr == D3DERR_DEVICEHUNG)
+			return R_NOTREADY;
+
+		return R_OK;
+	}
+	else
+	{
+		HRESULT hr = g_pd3dDevice->TestCooperativeLevel();
+
+		if (hr == D3DERR_DEVICELOST)
+			return R_NOTREADY;
+
+		if (hr == D3DERR_DEVICENOTRESET)
+			return R_RESTORED;
+
+		return R_OK;
+	}
+}
+#endif
 #define FPS_INTERVAL	1000
 static DWORD g_clear_color = 0x00000000;
 
@@ -1411,33 +1726,31 @@ bool RBeginScene()
 	
 	return true;
 }
-bool RFlip()
+
+void RFlip()
 {
 	REndScene();
+
+	// clear screenshot queue
+	//RFrame_PrePresent();
+
 	if (g_isDirect3D9ExEnabled)
 	{
 		HRESULT hr = g_pd3dDevice->PresentEx(NULL, NULL, NULL, NULL, D3DPRESENT_INTERVAL_IMMEDIATE);
 		if (hr != D3D_OK)
 		{
-			return false;
+			return;
 		}
 	}
 	else
 	{
 		HRESULT hr = ((LPDIRECT3DDEVICE9)g_pd3dDevice)->Present(NULL, NULL, NULL, NULL);
 	}
-	if (g_rsnRenderFlags & RRENDER_CLEAR_BACKBUFFER)
-	{
-		if (g_bStencilBuffer)
-			g_pd3dDevice->Clear(0, NULL, D3DCLEAR_TARGET | D3DCLEAR_ZBUFFER | D3DCLEAR_STENCIL, g_clear_color, 1.0f, 0L);
-		else
-			g_pd3dDevice->Clear(0, NULL, D3DCLEAR_TARGET | D3DCLEAR_ZBUFFER, g_clear_color, 1.0f, 0L);
-	}
-	else
-		g_pd3dDevice->Clear(0, NULL, D3DCLEAR_ZBUFFER, g_clear_color, 1.0f, 0);
 
+	RClear();
+
+	//FPS Fix
 	RBeginScene();
-
 	{
 		g_nFrameCount++;
 
@@ -1453,6 +1766,7 @@ bool RFlip()
 
 		if (frameTime > 100.0)
 		{
+			//due to some machines disliking the timegettime being added whit a float rather than a double, i made it a double
 			currentTime = timeGetTime() + fFrameLimit;
 		}
 
@@ -1464,7 +1778,6 @@ bool RFlip()
 		}
 		currentTime += fFrameLimit;
 
-
 		double currentTimeFPS = timeGetTime();
 		if (g_dwLastFPSTime + FPS_INTERVAL < currentTimeFPS)
 		{
@@ -1473,10 +1786,81 @@ bool RFlip()
 			g_nLastFrameCount = g_nFrameCount;
 		}
 	}
-
-	return true;
-
 }
+
+void RClear()
+{
+	if (g_rsnRenderFlags && RRENDER_CLEAR_BACKBUFFER)
+		g_pd3dDevice->Clear(0, NULL, D3DCLEAR_TARGET | D3DCLEAR_ZBUFFER, g_clear_color, 1.0f, 0L);
+	else
+		g_pd3dDevice->Clear(0, NULL, D3DCLEAR_ZBUFFER, g_clear_color, 1.0f, 0);
+}
+//bool RFlip()
+//{
+//	REndScene();
+//	if (g_isDirect3D9ExEnabled)
+//	{
+//		HRESULT hr = g_pd3dDevice->PresentEx(NULL, NULL, NULL, NULL, D3DPRESENT_INTERVAL_IMMEDIATE);
+//		if (hr != D3D_OK)
+//		{
+//			return false;
+//		}
+//	}
+//	else
+//	{
+//		HRESULT hr = ((LPDIRECT3DDEVICE9)g_pd3dDevice)->Present(NULL, NULL, NULL, NULL);
+//	}
+//	if (g_rsnRenderFlags & RRENDER_CLEAR_BACKBUFFER)
+//	{
+//		if (g_bStencilBuffer)
+//			g_pd3dDevice->Clear(0, NULL, D3DCLEAR_TARGET | D3DCLEAR_ZBUFFER | D3DCLEAR_STENCIL, g_clear_color, 1.0f, 0L);
+//		else
+//			g_pd3dDevice->Clear(0, NULL, D3DCLEAR_TARGET | D3DCLEAR_ZBUFFER, g_clear_color, 1.0f, 0L);
+//	}
+//	else
+//		g_pd3dDevice->Clear(0, NULL, D3DCLEAR_ZBUFFER, g_clear_color, 1.0f, 0);
+//
+//	RBeginScene();
+//
+//	{
+//		g_nFrameCount++;
+//
+//		double fFrameLimit = 0;
+//		if (g_nFrameLimitValue > 0)
+//		{
+//			fFrameLimit = 1000.0 / g_nFrameLimitValue;
+//		}
+//
+//		double newTime = timeGetTime();
+//		double frameTime = newTime - currentTime;
+//		double waitTime = fFrameLimit - frameTime;
+//
+//		if (frameTime > 100.0)
+//		{
+//			currentTime = timeGetTime() + fFrameLimit;
+//		}
+//
+//		while (waitTime > 0.0)
+//		{
+//			double deltaTime = min(waitTime, fFrameLimit);
+//			Sleep(deltaTime);
+//			waitTime -= deltaTime;
+//		}
+//		currentTime += fFrameLimit;
+//
+//
+//		double currentTimeFPS = timeGetTime();
+//		if (g_dwLastFPSTime + FPS_INTERVAL < currentTimeFPS)
+//		{
+//			g_fFPS = (g_nFrameCount - g_nLastFrameCount) * (float)FPS_INTERVAL / ((float)(currentTimeFPS - g_dwLastFPSTime) * (FPS_INTERVAL / 1000.f));
+//			g_dwLastFPSTime = currentTimeFPS;
+//			g_nLastFrameCount = g_nFrameCount;
+//		}
+//	}
+//
+//	return true;
+//
+//}
 
 void RDrawLine(rvector &v1,rvector &v2,DWORD dwColor)
 {
@@ -1807,6 +2191,20 @@ void RSetFrameLimitPerSeceond(int nFrameLimit)
 		g_nFrameLimitValue = nFrameLimit;
 }
 
+#ifdef _INPUTFPS
+void RSetUpdateLimitPerSecond(unsigned short nUpdateLimit)
+{
+	switch (nUpdateLimit)
+	{
+	case 0: {g_nUpdateLimitValue = 60; }break;
+	case 1: {	g_nUpdateLimitValue = 120;	}	break;
+	case 2: {	g_nUpdateLimitValue = 250;	}	break;
+	case 3: {	g_nUpdateLimitValue = 333;	}	break;
+	case 4: {   g_nUpdateLimitValue = 500;  }   break;
+	default: {	g_nUpdateLimitValue = 250;	}	break;
+	}
+}
+#endif
 void RSetTrackSize(int nTrackSize)
 {
 	switch (nTrackSize)
