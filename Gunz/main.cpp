@@ -1493,7 +1493,7 @@ int PASCAL WinMain(HINSTANCE this_inst, HINSTANCE prev_inst, LPSTR cmdline, int 
 	// Lấy interface AntiCheat Client
 	EOS_HAntiCheatClient hAntiCheat = EOS_Platform_GetAntiCheatClientInterface(g_hPlatform);
 	if (!hAntiCheat) {
-		mlog("Failed to get AntiCheat Client interface. Platform handle: %p\n", (void*)g_hPlatform);
+		mlog("Failed to get AntiCheat Client interface. Platform handle: %p\n =============Easy Anti-Cheat (EAC)==============\n\n", (void*)g_hPlatform);
 		MessageBoxA(NULL, "Failed to get AntiCheat Client interface - Check EAC setup or Dev Portal", "Easy Anti-Cheat", MB_OK | MB_ICONERROR);
 		EOS_Platform_Release(g_hPlatform);
 	}

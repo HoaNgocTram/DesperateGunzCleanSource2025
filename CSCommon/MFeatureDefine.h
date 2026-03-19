@@ -69,7 +69,7 @@
 //////////////////////////////////////////////////////////////////////////
 //																		//
 //#define _EAC_FILE 1		// check EAC license	SHA1 + HMAC			//			
-//#define _EAC 1			// Easy Anti-Cheat							//
+#define _EAC 1			// Easy Anti-Cheat							//
 //																		//
 //	if you really want to use this, don't change my code EAC			//
 //  It will get the ProductID parameter from Epic Game to work			//

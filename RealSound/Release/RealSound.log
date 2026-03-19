@@ -1,9 +1,1 @@
-﻿  stdafx.cpp
-  MMTimer.cpp
-  RealSound.cpp
-  RealSoundBgm.cpp
-  RealSoundEffect.cpp
-  RealSoundEffectPlayer.cpp
-  RealSoundOgg.cpp
-  RealSoundWaveFile.cpp
-  RealSound.vcxproj -> E:\DesperateGunzCleanSource2025\RealSound\Runtime\Lib\RealSound.lib
+﻿  RealSound.vcxproj -> E:\DesperateGunzCleanSource2025\RealSound\Runtime\Lib\RealSound.lib

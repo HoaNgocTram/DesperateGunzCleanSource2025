@@ -2645,8 +2645,6 @@ void ZOptionInterface::GetOldScreenResolution()
 
 bool ZOptionInterface::IsDiffScreenResolution()
 {
-	//if (ZGetConfiguration()->GetVideo()->nScreenType == 2)
-	//	return false;//the resolution never changes
 	ZIDLResource* pResource = ZApplication::GetGameInterface()->GetIDLResource();
 
 	MComboBox *pWidget = (MComboBox*)pResource->FindWidget("ScreenResolution");
