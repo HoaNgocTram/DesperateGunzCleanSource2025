@@ -938,7 +938,7 @@ void ZGame::Update(float fElapsed)
 				ZGetGame()->PostDuelTournamentHPAPInfo(); 
 
 			ZGetGame()->PostPeerPingInfo();
-			ZGetGame()->PostSyncReport();
+			//ZGetGame()->PostSyncReport();
 #ifdef _POSTABINFO
 			ZGetGame()->PostTabListInfo();
 #endif
