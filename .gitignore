@@ -1,69 +1,44 @@
-# ==========================================
-# GunZ Source Code GitIgnore
-# ==========================================
-
-# --- Visual Studio Junk ---
-*.sln.doccache
-*.suo
-*.user
-*.ncb
-*.sdf
-*.opensdf
-*.VC.db
-*.VC.opendb
-.vs/
-IPCH/
-ipch/
-
-# --- Build Output (Đống rác nặng nhất) ---
-Debug/
-Release/
-debug/
-release/
-x64/
-x86/
-build/
-
-# --- Compiled Files ---
+# Prerequisites
+*.d
+/Gunz/.vs
+/EOS/Samples/.vs
+/Build/*
+# Compiled Object files
+*.slo
+*.lo
+*.o
 *.obj
+*.log
 *.pdb
 *.idb
-*.ilk
-*.pch
+*.tlog
+*.tlh
+*.tli
 *.res
-*.tlog
-*.lastbuildstate
-*.unsuccessfulbuild
-*.exe
-*.dll
-*.lib
-*.exp
-
-# --- GunZ Specific / RealSpace ---
-# Nếu đại ca có build tool riêng hoặc file log của engine
-*.log
-*.map
-/Log/
-/Runtime/
-/LocalData/
-
-# --- OS Junk ---
-Thumbs.db
-Desktop.ini
-.DS_Store
-
-# --- Backup Files ---
-*.bak
-*.old
-*.tmp
-Build/Gunz/Gunz.exe
-*.exe
-*.pdb
-*.log
-*.pch
-*.tlog
-*.obj
-*.iobj
 *.ipdb
-*.idb
+*.iobj
+# Precompiled Headers
+*.gch
+*.pch
+
+# Compiled Dynamic libraries
+*.so
+*.dylib
+*.dll
+
+# Fortran module files
+*.mod
+*.smod
+
+# Compiled Static libraries
+*.lai
+*.la
+*.a
+*.lib
+
+# Executables
+*.exe
+*.exp
+*.out
+*.app
 *.map
